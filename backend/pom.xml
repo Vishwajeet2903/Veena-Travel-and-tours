@@ -12,10 +12,10 @@
   </parent>
 
   <groupId>com.veena</groupId>
-  <artifactId>sukhakarprawas-backend</artifactId>
+  <artifactId>veena-world-backend</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>SukhakarPrawas Backend</name>
-  <description>Spring Boot backend for SukhakarPrawas</description>
+  <name>Veena World Backend</name>
+  <description>Spring Boot backend for Veena World</description>
 
   <properties>
     <java.version>17</java.version>

@@ -1,4 +1,4 @@
-# SukhakarPrawas Backend
+# Veena World Backend
 
 Spring Boot + MySQL backend for the Angular travel booking MVP.
 

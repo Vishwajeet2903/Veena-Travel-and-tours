@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "sukhakarprawas": {
+    "veena-world": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sukhakarprawas",
+            "outputPath": "dist/veena-world",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "sukhakarprawas:build:production"
+              "buildTarget": "veena-world:build:production"
             },
             "development": {
-              "buildTarget": "sukhakarprawas:build:development"
+              "buildTarget": "veena-world:build:development"
             }
           },
           "defaultConfiguration": "development"
