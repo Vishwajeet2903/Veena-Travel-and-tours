@@ -4,6 +4,7 @@ import { finalize, Observable } from 'rxjs';
 
 import { AuthService } from '../services/auth.service';
 import { LoadingService } from '../services/loading.service';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
@@ -14,7 +15,8 @@ export class JwtInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token = this.authService.getToken();
-    const authRequest = token
+    const isAuthRequest = request.url.startsWith(`${environment.apiUrl}/auth/`);
+    const authRequest = token && !isAuthRequest
       ? request.clone({ setHeaders: { Authorization: `Bearer ${token}` } })
       : request;
 
