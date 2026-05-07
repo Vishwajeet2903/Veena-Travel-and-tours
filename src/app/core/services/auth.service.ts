@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, Observable, of, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
 import { AuthResponse, User } from '../models/user.model';
@@ -28,14 +28,14 @@ export class AuthService {
 
   login(payload: LoginPayload): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.baseUrl}/login`, payload).pipe(
-      catchError(() => this.mockAuth(payload.email)),
+      catchError((error) => throwError(() => new Error(this.readErrorMessage(error, 'Login failed. Check your email and password.')))),
       tap((response) => this.persistSession(response))
     );
   }
 
   register(payload: RegisterPayload): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.baseUrl}/register`, payload).pipe(
-      catchError(() => this.mockAuth(payload.email, payload.name)),
+      catchError((error) => throwError(() => new Error(this.readErrorMessage(error, 'Registration failed. Please try again.')))),
       tap((response) => this.persistSession(response))
     );
   }
@@ -69,19 +69,12 @@ export class AuthService {
     return rawUser ? JSON.parse(rawUser) as User : null;
   }
 
-  private mockAuth(email: string, name = 'Travel Planner'): Observable<AuthResponse> {
-    if (!email || email.includes('fail')) {
-      return throwError(() => new Error('Invalid email or password.'));
+  private readErrorMessage(error: unknown, fallback: string): string {
+    if (typeof error === 'object' && error !== null && 'error' in error) {
+      const response = (error as { error?: { detail?: string; message?: string; error?: string } }).error;
+      return response?.detail || response?.message || response?.error || fallback;
     }
 
-    return of({
-      token: 'mock-jwt-token',
-      user: {
-        id: 1,
-        name,
-        email,
-        role: email.includes('admin') ? 'ADMIN' : 'USER'
-      }
-    });
+    return fallback;
   }
 }

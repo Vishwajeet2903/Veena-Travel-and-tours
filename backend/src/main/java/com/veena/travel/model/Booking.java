@@ -54,6 +54,11 @@ public class Booking {
   private String route;
   private String travelDate;
   private BigDecimal price;
+  private String paymentStatus = "PENDING";
+  private String paymentGateway;
+  private String paymentQrId;
+  private String paymentQrImageUrl;
+  private String paymentId;
 
   public Long getId() {
     return id;
@@ -205,5 +210,45 @@ public class Booking {
 
   public void setPrice(BigDecimal price) {
     this.price = price;
+  }
+
+  public String getPaymentStatus() {
+    return paymentStatus;
+  }
+
+  public void setPaymentStatus(String paymentStatus) {
+    this.paymentStatus = paymentStatus;
+  }
+
+  public String getPaymentGateway() {
+    return paymentGateway;
+  }
+
+  public void setPaymentGateway(String paymentGateway) {
+    this.paymentGateway = paymentGateway;
+  }
+
+  public String getPaymentQrId() {
+    return paymentQrId;
+  }
+
+  public void setPaymentQrId(String paymentQrId) {
+    this.paymentQrId = paymentQrId;
+  }
+
+  public String getPaymentQrImageUrl() {
+    return paymentQrImageUrl;
+  }
+
+  public void setPaymentQrImageUrl(String paymentQrImageUrl) {
+    this.paymentQrImageUrl = paymentQrImageUrl;
+  }
+
+  public String getPaymentId() {
+    return paymentId;
+  }
+
+  public void setPaymentId(String paymentId) {
+    this.paymentId = paymentId;
   }
 }

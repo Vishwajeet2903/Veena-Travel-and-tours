@@ -91,8 +91,8 @@ export class BookingComponent implements OnInit {
         this.errorMessage = '';
         void this.router.navigate(['/booking/payment', booking.id]);
       },
-      error: () => {
-        this.errorMessage = 'Unable to confirm booking. Please try again.';
+      error: (error) => {
+        this.errorMessage = this.readErrorMessage(error, 'Unable to confirm booking. Please try again.');
       }
     });
   }
@@ -179,5 +179,14 @@ export class BookingComponent implements OnInit {
       checkIn: this.bookingForm.controls.checkIn.value ?? '',
       checkOut: this.bookingForm.controls.checkOut.value ?? ''
     };
+  }
+
+  private readErrorMessage(error: unknown, fallback: string): string {
+    if (typeof error === 'object' && error !== null && 'error' in error) {
+      const response = (error as { error?: { detail?: string; message?: string; error?: string } }).error;
+      return response?.detail || response?.message || response?.error || fallback;
+    }
+
+    return fallback;
   }
 }

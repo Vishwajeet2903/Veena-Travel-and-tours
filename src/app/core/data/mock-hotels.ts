@@ -59,5 +59,18 @@ export const MOCK_HOTELS: Hotel[] = [
       'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1602002418082-a4443e081dd1?auto=format&fit=crop&w=1200&q=80'
     ]
+  },
+  {
+    id: 5,
+    name: 'Romify Budget Stay',
+    location: 'Pune, India',
+    pricePerNight: 1,
+    rating: 4.1,
+    featured: true,
+    description: 'A demo hotel option with a one rupee fare for testing booking and QR payment.',
+    amenities: ['Free Wi-Fi', 'Breakfast', 'City access'],
+    images: [
+      'https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1200&q=80'
+    ]
   }
 ];

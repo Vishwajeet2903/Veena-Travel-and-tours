@@ -35,10 +35,10 @@ public class DataSeeder {
   }
 
   private void seedUsers(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-    if (!userRepository.existsByEmail("admin@veena.com")) {
+    if (!userRepository.existsByEmail("admin@romify.com")) {
       var admin = new User();
       admin.setName("Admin");
-      admin.setEmail("admin@veena.com");
+      admin.setEmail("admin@romify.com");
       admin.setPassword(passwordEncoder.encode("admin@123"));
       admin.setRole(Role.ADMIN);
       userRepository.save(admin);
@@ -46,48 +46,69 @@ public class DataSeeder {
   }
 
   private void seedHotels(HotelRepository hotelRepository) {
-    if (hotelRepository.count() > 0) {
-      return;
+    if (hotelRepository.count() == 0) {
+      hotelRepository.save(hotel(
+          "Azure Bay Resort",
+          "Goa, India",
+          "7200",
+          4.7,
+          true,
+          "A breezy beach resort with sea-facing rooms and curated dining.",
+          List.of("Sea view", "Pool", "Spa", "Breakfast included"),
+          List.of("https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80")
+      ));
+      hotelRepository.save(hotel(
+          "Himalayan Cedar Retreat",
+          "Manali, India",
+          "5400",
+          4.5,
+          true,
+          "A mountain hideaway with warm interiors and valley views.",
+          List.of("Mountain view", "Bonfire", "Heated rooms", "Free Wi-Fi"),
+          List.of("https://images.unsplash.com/photo-1517320964276-a002fa203177?auto=format&fit=crop&w=1200&q=80")
+      ));
     }
 
-    hotelRepository.save(hotel(
-        "Azure Bay Resort",
-        "Goa, India",
-        "7200",
-        4.7,
-        true,
-        "A breezy beach resort with sea-facing rooms and curated dining.",
-        List.of("Sea view", "Pool", "Spa", "Breakfast included"),
-        List.of("https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80")
-    ));
-    hotelRepository.save(hotel(
-        "Himalayan Cedar Retreat",
-        "Manali, India",
-        "5400",
-        4.5,
-        true,
-        "A mountain hideaway with warm interiors and valley views.",
-        List.of("Mountain view", "Bonfire", "Heated rooms", "Free Wi-Fi"),
-        List.of("https://images.unsplash.com/photo-1517320964276-a002fa203177?auto=format&fit=crop&w=1200&q=80")
-    ));
+    var hasOneRupeeHotel = hotelRepository.findAll().stream()
+        .anyMatch(hotel -> "Romify Budget Stay".equalsIgnoreCase(hotel.getName()));
+    if (!hasOneRupeeHotel) {
+      hotelRepository.save(hotel(
+          "Romify Budget Stay",
+          "Pune, India",
+          "1",
+          4.1,
+          true,
+          "A demo hotel option with a one rupee fare for testing booking and QR payment.",
+          List.of("Free Wi-Fi", "Breakfast", "City access"),
+          List.of("https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1200&q=80")
+      ));
+    }
   }
 
   private void seedFlights(FlightRepository flightRepository) {
-    if (flightRepository.count() > 0) {
-      return;
+    if (flightRepository.count() == 0) {
+      flightRepository.save(flight("IndiGo", "6E 204", "Delhi", "Goa", "06:20", "08:55", "2h 35m", 0, "6499", 4.4, "Economy"));
+      flightRepository.save(flight("Vistara", "UK 747", "Delhi", "Mumbai", "13:25", "15:40", "2h 15m", 0, "8200", 4.7, "Premium Economy"));
     }
 
-    flightRepository.save(flight("IndiGo", "6E 204", "Delhi", "Goa", "06:20", "08:55", "2h 35m", 0, "6499", 4.4, "Economy"));
-    flightRepository.save(flight("Vistara", "UK 747", "Delhi", "Mumbai", "13:25", "15:40", "2h 15m", 0, "8200", 4.7, "Premium Economy"));
+    var hasOneRupeeFlight = flightRepository.findAll().stream()
+        .anyMatch(flight -> "RF 001".equalsIgnoreCase(flight.getFlightNumber()));
+    if (!hasOneRupeeFlight) {
+      flightRepository.save(flight("Romify Air", "RF 001", "Pune", "Mumbai", "10:00", "10:45", "45m", 0, "1", 4.3, "Economy"));
+    }
   }
 
   private void seedBuses(BusRepository busRepository) {
-    if (busRepository.count() > 0) {
-      return;
+    if (busRepository.count() == 0) {
+      busRepository.save(bus("VRL Travels", "VRL 2218", "Bengaluru", "Goa", "21:30", "07:15", "9h 45m", "Volvo Multi-Axle", 18, "1450", 4.4));
+      busRepository.save(bus("Orange Tours", "OT 510", "Hyderabad", "Bengaluru", "22:10", "06:20", "8h 10m", "AC Sleeper", 12, "1690", 4.5));
     }
 
-    busRepository.save(bus("VRL Travels", "VRL 2218", "Bengaluru", "Goa", "21:30", "07:15", "9h 45m", "Volvo Multi-Axle", 18, "1450", 4.4));
-    busRepository.save(bus("Orange Tours", "OT 510", "Hyderabad", "Bengaluru", "22:10", "06:20", "8h 10m", "AC Sleeper", 12, "1690", 4.5));
+    var hasOneRupeeBus = busRepository.findAll().stream()
+        .anyMatch(bus -> "RB 001".equalsIgnoreCase(bus.getBusNumber()));
+    if (!hasOneRupeeBus) {
+      busRepository.save(bus("Romify Express", "RB 001", "Pune", "Satara", "08:00", "10:30", "2h 30m", "AC Seater", 40, "1", 4.2));
+    }
   }
 
   private Hotel hotel(

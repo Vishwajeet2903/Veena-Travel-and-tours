@@ -70,5 +70,19 @@ export const MOCK_FLIGHTS: Flight[] = [
     price: 9900,
     rating: 4.0,
     cabinClass: 'Business'
+  },
+  {
+    id: 106,
+    airline: 'Romify Air',
+    flightNumber: 'RF 001',
+    from: 'Pune',
+    to: 'Mumbai',
+    departureTime: '10:00',
+    arrivalTime: '10:45',
+    duration: '45m',
+    stops: 0,
+    price: 1,
+    rating: 4.3,
+    cabinClass: 'Economy'
   }
 ];

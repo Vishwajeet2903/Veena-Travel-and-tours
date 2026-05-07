@@ -56,5 +56,19 @@ export const MOCK_BUSES: Bus[] = [
     seatsAvailable: 31,
     price: 650,
     rating: 4.0
+  },
+  {
+    id: 205,
+    operator: 'Romify Express',
+    busNumber: 'RB 001',
+    from: 'Pune',
+    to: 'Satara',
+    departureTime: '08:00',
+    arrivalTime: '10:30',
+    duration: '2h 30m',
+    busType: 'AC Seater',
+    seatsAvailable: 40,
+    price: 1,
+    rating: 4.2
   }
 ];

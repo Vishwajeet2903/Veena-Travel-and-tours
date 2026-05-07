@@ -23,31 +23,6 @@
   text-transform: uppercase;
 }
 
-.payment-tabs {
-  display: inline-flex;
-  gap: 6px;
-  margin-bottom: 16px;
-  padding: 6px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #fff;
-
-  button {
-    min-height: 40px;
-    border: 0;
-    border-radius: 6px;
-    padding: 0 16px;
-    color: var(--muted);
-    background: transparent;
-    font-weight: 850;
-
-    &.active {
-      color: #fff;
-      background: var(--brand);
-    }
-  }
-}
-
 .payment-form,
 .payment-summary {
   border: 1px solid var(--line);
@@ -62,10 +37,74 @@
   padding: 20px;
 }
 
-.form-grid {
+.qr-payment {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
+  grid-template-columns: minmax(280px, 340px) 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.qr-payment__code {
+  display: block;
+  width: 100%;
+  min-width: 280px;
+  max-width: 340px;
+  aspect-ratio: 1;
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(23, 32, 51, 0.08);
+}
+
+.qr-payment__placeholder {
+  display: grid;
+  width: 100%;
+  min-width: 280px;
+  max-width: 340px;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  color: var(--muted);
+  background: var(--surface-soft);
+  font-weight: 800;
+}
+
+.qr-payment__details {
+  display: grid;
+  gap: 10px;
+
+  strong {
+    color: var(--brand-dark);
+    font-size: 1.25rem;
+  }
+
+  p {
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  div {
+    display: inline-grid;
+    width: fit-content;
+    gap: 4px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px 12px;
+    background: var(--surface-soft);
+  }
+
+  span {
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  b {
+    color: var(--ink);
+  }
 }
 
 .payment-summary {
@@ -113,7 +152,17 @@
 
 @media (max-width: 820px) {
   .payment-page,
-  .form-grid {
+  .qr-payment {
     grid-template-columns: 1fr;
+  }
+
+  .qr-payment__code {
+    width: min(340px, 100%);
+    min-width: 0;
+  }
+
+  .qr-payment__placeholder {
+    width: min(340px, 100%);
+    min-width: 0;
   }
 }

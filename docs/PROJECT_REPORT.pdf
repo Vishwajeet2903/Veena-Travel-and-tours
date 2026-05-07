@@ -1,0 +1,2206 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R 19 0 R 21 0 R 23 0 R 25 0 R 27 0 R 29 0 R 31 0 R 33 0 R 35 0 R 37 0 R 39 0 R 41 0 R 43 0 R 45 0 R] /Count 21 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Length 1939 >>
+stream
+BT /F1 10 Tf 50 790 Td 14 TL
+(PROJECT REPORT: ROMIFY TRAVEL BOOKING SYSTEM) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(## TITLE PAGE) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(Project Title: Romify Travel Booking System) Tj
+T*
+(Project Type: Web Application) Tj
+T*
+(Submitted By: [Student Name]) Tj
+T*
+(Roll Number: [Roll Number]) Tj
+T*
+(Course: [Course Name]) Tj
+T*
+(Department: [Department Name]) Tj
+T*
+(College: [College Name]) Tj
+T*
+(Academic Year: [Academic Year]) Tj
+T*
+(Company / Organization: [Company Name]) Tj
+T*
+(Project Guide: [Guide Name]) Tj
+T*
+(Technology Used: Angular, Spring Boot, MySQL) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## CERTIFICATE FROM COLLEGE) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(This is to certify that [Student Name], student of [College Name], has successfully completed) Tj
+T*
+(the project titled "Romify Travel Booking System" in partial fulfillment of the requirements) Tj
+T*
+(for [Course Name] during the academic year [Academic Year].) Tj
+T*
+() Tj
+T*
+(The work carried out by the student is original and has been completed under the guidance of) Tj
+T*
+([Guide Name].) Tj
+T*
+() Tj
+T*
+(Place: [City]) Tj
+T*
+(Date: [Date]) Tj
+T*
+() Tj
+T*
+(Project Guide: ____________________) Tj
+T*
+(Head of Department: ____________________) Tj
+T*
+(Principal: ____________________) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## CERTIFICATE FROM COMPANY) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(This is to certify that [Student Name] has completed the project titled "Romify Travel Booking) Tj
+T*
+(System" at [Company Name] during the period [Start Date] to [End Date].) Tj
+T*
+() Tj
+T*
+(The student has worked on the design and development of a travel booking web application that) Tj
+T*
+(provides hotel, flight, bus booking, authentication, admin management, booking history, payment) Tj
+T*
+(workflow, and city place suggestion chatbot features.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 4 0 R >>
+endobj
+6 0 obj
+<< /Length 2298 >>
+stream
+BT /F1 10 Tf 50 790 Td 14 TL
+() Tj
+T*
+(Company Mentor: ____________________) Tj
+T*
+(Designation: ____________________) Tj
+T*
+(Company Seal: ____________________) Tj
+T*
+(Date: ____________________) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## ACKNOWLEDGEMENT) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(I express my sincere gratitude to [College Name], [Department Name], and my project guide) Tj
+T*
+([Guide Name] for their valuable support and guidance throughout the development of this) Tj
+T*
+(project.) Tj
+T*
+() Tj
+T*
+(I am also thankful to [Company Name] and my company mentor [Mentor Name] for providing an) Tj
+T*
+(opportunity to work on this project and for giving practical guidance during implementation.) Tj
+T*
+() Tj
+T*
+(Finally, I thank my friends, teachers, and family members for their encouragement and support.) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## INTRODUCTION) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(Romify is a travel booking web application designed to help users search and book hotels,) Tj
+T*
+(flights, and buses from one platform. The system also provides authentication, booking history,) Tj
+T*
+(payment flow, admin management, and a city guide chatbot that suggests popular places when a) Tj
+T*
+(user enters a city name.) Tj
+T*
+() Tj
+T*
+(The application is built using Angular for the frontend, Spring Boot for the backend REST API,) Tj
+T*
+(and MySQL as the database. It follows a modular structure so that each feature, such as hotels,) Tj
+T*
+(flights, buses, booking, authentication, and administration, can be maintained independently.) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## COMPANY PROFILE) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+([Company Name] is an organization that provides software development and technology-based) Tj
+T*
+(solutions. The company focuses on building reliable, user-friendly, and scalable applications) Tj
+T*
+(for real-world business needs.) Tj
+T*
+() Tj
+T*
+(For this project, the company acted as the development and guidance organization for the Romify) Tj
+T*
+(travel booking system.) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 2144 >>
+stream
+BT /F1 10 Tf 50 790 Td 14 TL
+(## PROBLEM STATEMENT) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(Travellers often need to use multiple platforms to search hotels, flights, buses, and travel-) Tj
+T*
+(related information. This increases effort, causes confusion, and makes booking management) Tj
+T*
+(difficult.) Tj
+T*
+() Tj
+T*
+(The problem is to develop a single travel booking system where users can search hotels,) Tj
+T*
+(flights, and buses, create bookings, make payment entries, view previous bookings, and get) Tj
+T*
+(quick place suggestions for selected cities.) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## EXISTING SYSTEM AND NEED FOR THE SYSTEM) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(In an existing manual or semi-digital travel booking process, users may need to contact agents) Tj
+T*
+(or visit separate websites for different services. Booking details may be scattered across) Tj
+T*
+(different systems, and users may not have one place to view their travel history.) Tj
+T*
+() Tj
+T*
+(Limitations of Existing System:) Tj
+T*
+() Tj
+T*
+(- Separate platforms for hotel, flight, and bus booking.) Tj
+T*
+(- Time-consuming comparison of travel options.) Tj
+T*
+(- No centralized booking history.) Tj
+T*
+(- Manual dependency on agents for basic travel suggestions.) Tj
+T*
+(- Difficult administration of hotel, flight, and bus records.) Tj
+T*
+() Tj
+T*
+(Need for Proposed System:) Tj
+T*
+() Tj
+T*
+(- A single platform for multiple travel services.) Tj
+T*
+(- Faster search and booking experience.) Tj
+T*
+(- Secure login and user-specific booking history.) Tj
+T*
+(- Admin panel for managing travel inventory.) Tj
+T*
+(- Chatbot support for city-based place suggestions.) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## SCOPE OF THE PROPOSED SYSTEM) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(The proposed Romify system covers:) Tj
+T*
+() Tj
+T*
+(- User registration and login.) Tj
+T*
+(- Hotel search, listing, detail view, and booking.) Tj
+T*
+(- Flight search, listing, and booking.) Tj
+T*
+(- Bus search, listing, and booking.) Tj
+T*
+(- Booking history for logged-in users.) Tj
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 8 0 R >>
+endobj
+10 0 obj
+<< /Length 1904 >>
+stream
+BT /F1 10 Tf 50 790 Td 14 TL
+(- Payment form workflow.) Tj
+T*
+(- Admin dashboard for managing hotel records.) Tj
+T*
+(- REST APIs for hotels, flights, buses, bookings, and authentication.) Tj
+T*
+(- City place suggestion chatbot.) Tj
+T*
+() Tj
+T*
+(The system is suitable for a travel booking MVP and can be enhanced for real payment gateway) Tj
+T*
+(integration, live inventory, notifications, and advanced analytics.) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## OBJECTIVES OF THE PROPOSED SYSTEM) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(- To provide a user-friendly travel booking platform.) Tj
+T*
+(- To allow users to search hotels, flights, and buses.) Tj
+T*
+(- To manage authentication using JWT-based security.) Tj
+T*
+(- To store booking and product data in MySQL.) Tj
+T*
+(- To provide booking history for registered users.) Tj
+T*
+(- To allow admin users to manage travel inventory.) Tj
+T*
+(- To suggest popular places through a chatbot based on city name.) Tj
+T*
+(- To create a modular and maintainable application architecture.) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## OPERATING ENVIRONMENT - HARDWARE AND SOFTWARE) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(### Hardware Requirements) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(| Component | Minimum Requirement |) Tj
+T*
+(|---|---|) Tj
+T*
+(| Processor | Intel i3 or equivalent |) Tj
+T*
+(| RAM | 4 GB |) Tj
+T*
+(| Storage | 2 GB free space |) Tj
+T*
+(| Network | Internet / Local network |) Tj
+T*
+(| Display | 1366 x 768 resolution |) Tj
+T*
+() Tj
+T*
+(### Software Requirements) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(| Software | Version / Use |) Tj
+T*
+(|---|---|) Tj
+T*
+(| Operating System | Windows / Linux / macOS |) Tj
+T*
+(| Frontend | Angular 21 |) Tj
+T*
+(| Backend | Spring Boot 3.4.5 |) Tj
+T*
+(| Programming Languages | TypeScript, Java 17 |) Tj
+T*
+(| Database | MySQL |) Tj
+ET
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 10 0 R >>
+endobj
+12 0 obj
+<< /Length 1775 >>
+stream
+BT /F1 10 Tf 50 790 Td 14 TL
+(| Build Tools | Angular CLI, Maven |) Tj
+T*
+(| Runtime | Node.js, JDK 17 |) Tj
+T*
+(| IDE | Visual Studio Code / IntelliJ IDEA |) Tj
+T*
+(| API Testing | Postman / Browser DevTools |) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## BRIEF DESCRIPTION OF TECHNOLOGY USED) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(Angular: Used to build the single-page frontend application with modules, components, forms,) Tj
+T*
+(routing, and services.) Tj
+T*
+() Tj
+T*
+(Spring Boot: Used to build REST APIs for authentication, hotels, flights, buses, and bookings.) Tj
+T*
+() Tj
+T*
+(MySQL: Used as the relational database for users, travel products, and bookings.) Tj
+T*
+() Tj
+T*
+(Spring Security and JWT: Used for secure login and protected APIs.) Tj
+T*
+() Tj
+T*
+(Hibernate / JPA: Used for object-relational mapping between Java entities and database tables.) Tj
+T*
+() Tj
+T*
+(SCSS: Used for styling frontend components.) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## SYSTEM ANALYSIS AND DESIGN) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(The Romify system is divided into frontend, backend, and database layers. Users interact with) Tj
+T*
+(Angular screens. Angular services call Spring Boot REST APIs. The backend validates data,) Tj
+T*
+(applies security rules, performs business logic, and stores data in MySQL.) Tj
+T*
+() Tj
+T*
+(The main actors are:) Tj
+T*
+() Tj
+T*
+(- Guest User) Tj
+T*
+(- Registered User) Tj
+T*
+(- Admin) Tj
+T*
+() Tj
+T*
+(The main modules are:) Tj
+T*
+() Tj
+T*
+(- Authentication Module) Tj
+T*
+(- Hotel Module) Tj
+T*
+(- Flight Module) Tj
+T*
+(- Bus Module) Tj
+T*
+(- Booking Module) Tj
+T*
+(- Payment Module) Tj
+T*
+(- Admin Module) Tj
+T*
+(- Chatbot Module) Tj
+ET
+endstream
+endobj
+13 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 12 0 R >>
+endobj
+14 0 obj
+<< /Length 2324 >>
+stream
+BT /F1 10 Tf 50 790 Td 14 TL
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## SYSTEM REQUIREMENTS) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(### Functional Requirements) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(| ID | Requirement |) Tj
+T*
+(|---|---|) Tj
+T*
+(| FR-01 | The system shall allow users to register with name, email, and password. |) Tj
+T*
+(| FR-02 | The system shall allow users to log in using email and password. |) Tj
+T*
+(| FR-03 | The system shall display hotels with filtering by location, rating, price, and sorting. |) Tj
+T*
+(| FR-04 | The system shall display flights with filtering by source, destination, class, price, and sorting. |) Tj
+T*
+(| FR-05 | The system shall display buses with filtering by source, destination, bus type, price, and sorting. |) Tj
+T*
+(| FR-06 | The system shall allow authenticated users to create bookings. |) Tj
+T*
+(| FR-07 | The system shall allow users to view their booking history. |) Tj
+T*
+(| FR-08 | The system shall provide a payment screen for booking confirmation workflow. |) Tj
+T*
+(| FR-09 | The system shall allow admin users to add, update, and delete hotel records. |) Tj
+T*
+(| FR-10 | The chatbot shall accept a city name and display popular places. |) Tj
+T*
+() Tj
+T*
+(### Non-Functional Requirements) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(| ID | Requirement |) Tj
+T*
+(|---|---|) Tj
+T*
+(| NFR-01 | The user interface should be responsive. |) Tj
+T*
+(| NFR-02 | APIs should return proper HTTP status codes. |) Tj
+T*
+(| NFR-03 | Passwords should be stored in encrypted form. |) Tj
+T*
+(| NFR-04 | Protected APIs should require JWT authentication. |) Tj
+T*
+(| NFR-05 | The system should be modular and maintainable. |) Tj
+T*
+(| NFR-06 | Form validation should prevent invalid user input. |) Tj
+T*
+(| NFR-07 | The system should be easy to deploy in a local environment. |) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## FEASIBILITY STUDY) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(### Technical Feasibility) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(The project is technically feasible because it uses widely available technologies such as) Tj
+T*
+(Angular, Spring Boot, Java, and MySQL. These technologies support modular development, REST) Tj
+T*
+(APIs, and secure authentication.) Tj
+T*
+() Tj
+T*
+(### Economic Feasibility) Tj
+ET
+endstream
+endobj
+15 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 14 0 R >>
+endobj
+16 0 obj
+<< /Length 1768 >>
+stream
+BT /F1 10 Tf 50 790 Td 14 TL
+() Tj
+T*
+() Tj
+T*
+(The project is economically feasible because the tools used are open-source or free for) Tj
+T*
+(development. The system can be developed and deployed locally with minimum hardware cost.) Tj
+T*
+() Tj
+T*
+(### Operational Feasibility) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(The system is operationally feasible because users can easily search, book, and view travel) Tj
+T*
+(services through a simple web interface. Admin users can manage records without directly) Tj
+T*
+(accessing the database.) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## ARCHITECTURE DESIGN) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+([mermaid]) Tj
+T*
+(flowchart LR) Tj
+T*
+(  User[User Browser] --> Angular[Angular Frontend]) Tj
+T*
+(  Angular --> Services[Angular Services]) Tj
+T*
+(  Services --> API[Spring Boot REST API]) Tj
+T*
+(  API --> Security[Spring Security + JWT]) Tj
+T*
+(  API --> JPA[JPA Repositories]) Tj
+T*
+(  JPA --> DB[\(MySQL Database\)]) Tj
+T*
+() Tj
+T*
+(Architecture Layers:) Tj
+T*
+() Tj
+T*
+(- Presentation Layer: Angular components and pages.) Tj
+T*
+(- Service Layer: Angular services and Spring Boot controllers.) Tj
+T*
+(- Security Layer: JWT authentication and authorization.) Tj
+T*
+(- Data Access Layer: Spring Data JPA repositories.) Tj
+T*
+(- Database Layer: MySQL tables.) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## ENTITY RELATIONSHIP DIAGRAM) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+([mermaid]) Tj
+T*
+(erDiagram) Tj
+T*
+(  USERS ||--o{ BOOKING : creates) Tj
+T*
+(  HOTEL ||--o{ BOOKING : selected_for) Tj
+T*
+(  FLIGHT ||--o{ BOOKING : selected_for) Tj
+T*
+(  BUS ||--o{ BOOKING : selected_for) Tj
+T*
+() Tj
+T*
+(  USERS {) Tj
+T*
+(    long id PK) Tj
+ET
+endstream
+endobj
+17 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 16 0 R >>
+endobj
+18 0 obj
+<< /Length 1187 >>
+stream
+BT /F1 10 Tf 50 790 Td 14 TL
+(    string name) Tj
+T*
+(    string email) Tj
+T*
+(    string password) Tj
+T*
+(    string role) Tj
+T*
+(  }) Tj
+T*
+() Tj
+T*
+(  HOTEL {) Tj
+T*
+(    long id PK) Tj
+T*
+(    string name) Tj
+T*
+(    string location) Tj
+T*
+(    decimal price_per_night) Tj
+T*
+(    double rating) Tj
+T*
+(    string description) Tj
+T*
+(    boolean featured) Tj
+T*
+(  }) Tj
+T*
+() Tj
+T*
+(  FLIGHT {) Tj
+T*
+(    long id PK) Tj
+T*
+(    string airline) Tj
+T*
+(    string flight_number) Tj
+T*
+(    string from_city) Tj
+T*
+(    string to_city) Tj
+T*
+(    string departure_time) Tj
+T*
+(    string arrival_time) Tj
+T*
+(    string duration) Tj
+T*
+(    int stops) Tj
+T*
+(    decimal price) Tj
+T*
+(    double rating) Tj
+T*
+(    string cabin_class) Tj
+T*
+(  }) Tj
+T*
+() Tj
+T*
+(  BUS {) Tj
+T*
+(    long id PK) Tj
+T*
+(    string operator) Tj
+T*
+(    string bus_number) Tj
+T*
+(    string from_city) Tj
+T*
+(    string to_city) Tj
+T*
+(    string departure_time) Tj
+T*
+(    string arrival_time) Tj
+T*
+(    string duration) Tj
+T*
+(    string bus_type) Tj
+T*
+(    int seats_available) Tj
+T*
+(    decimal price) Tj
+T*
+(    double rating) Tj
+T*
+(  }) Tj
+T*
+() Tj
+T*
+(  BOOKING {) Tj
+T*
+(    long id PK) Tj
+ET
+endstream
+endobj
+19 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 18 0 R >>
+endobj
+20 0 obj
+<< /Length 1204 >>
+stream
+BT /F1 10 Tf 50 790 Td 14 TL
+(    string product_type) Tj
+T*
+(    string status) Tj
+T*
+(    long user_id FK) Tj
+T*
+(    long hotel_id FK) Tj
+T*
+(    long flight_id FK) Tj
+T*
+(    long bus_id FK) Tj
+T*
+(    string guest_name) Tj
+T*
+(    string email) Tj
+T*
+(    string travel_date) Tj
+T*
+(    decimal price) Tj
+T*
+(  }) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## CLASS DIAGRAM) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+([mermaid]) Tj
+T*
+(classDiagram) Tj
+T*
+(  class User {) Tj
+T*
+(    Long id) Tj
+T*
+(    String name) Tj
+T*
+(    String email) Tj
+T*
+(    String password) Tj
+T*
+(    Role role) Tj
+T*
+(  }) Tj
+T*
+() Tj
+T*
+(  class Hotel {) Tj
+T*
+(    Long id) Tj
+T*
+(    String name) Tj
+T*
+(    String location) Tj
+T*
+(    BigDecimal pricePerNight) Tj
+T*
+(    Double rating) Tj
+T*
+(    String description) Tj
+T*
+(    List~String~ amenities) Tj
+T*
+(    List~String~ images) Tj
+T*
+(    Boolean featured) Tj
+T*
+(  }) Tj
+T*
+() Tj
+T*
+(  class Flight {) Tj
+T*
+(    Long id) Tj
+T*
+(    String airline) Tj
+T*
+(    String flightNumber) Tj
+T*
+(    String fromCity) Tj
+T*
+(    String toCity) Tj
+T*
+(    BigDecimal price) Tj
+T*
+(    String cabinClass) Tj
+T*
+(  }) Tj
+ET
+endstream
+endobj
+21 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 20 0 R >>
+endobj
+22 0 obj
+<< /Length 1377 >>
+stream
+BT /F1 10 Tf 50 790 Td 14 TL
+() Tj
+T*
+(  class Bus {) Tj
+T*
+(    Long id) Tj
+T*
+(    String operator) Tj
+T*
+(    String busNumber) Tj
+T*
+(    String fromCity) Tj
+T*
+(    String toCity) Tj
+T*
+(    String busType) Tj
+T*
+(    BigDecimal price) Tj
+T*
+(  }) Tj
+T*
+() Tj
+T*
+(  class Booking {) Tj
+T*
+(    Long id) Tj
+T*
+(    ProductType productType) Tj
+T*
+(    BookingStatus status) Tj
+T*
+(    String guestName) Tj
+T*
+(    String email) Tj
+T*
+(    String travelDate) Tj
+T*
+(    BigDecimal price) Tj
+T*
+(  }) Tj
+T*
+() Tj
+T*
+(  User "1" --> "many" Booking) Tj
+T*
+(  Hotel "1" --> "many" Booking) Tj
+T*
+(  Flight "1" --> "many" Booking) Tj
+T*
+(  Bus "1" --> "many" Booking) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## USE CASE DIAGRAMS) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+([mermaid]) Tj
+T*
+(flowchart TD) Tj
+T*
+(  Guest[Guest User]) Tj
+T*
+(  User[Registered User]) Tj
+T*
+(  Admin[Admin]) Tj
+T*
+() Tj
+T*
+(  Register\(\(Register\)\)) Tj
+T*
+(  Login\(\(Login\)\)) Tj
+T*
+(  SearchHotel\(\(Search Hotels\)\)) Tj
+T*
+(  SearchFlight\(\(Search Flights\)\)) Tj
+T*
+(  SearchBus\(\(Search Buses\)\)) Tj
+T*
+(  ViewDetails\(\(View Details\)\)) Tj
+T*
+(  Book\(\(Create Booking\)\)) Tj
+T*
+(  Pay\(\(Payment\)\)) Tj
+T*
+(  History\(\(View Booking History\)\)) Tj
+T*
+(  Chatbot\(\(Get City Places\)\)) Tj
+T*
+(  ManageHotel\(\(Manage Hotels\)\)) Tj
+ET
+endstream
+endobj
+23 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 22 0 R >>
+endobj
+24 0 obj
+<< /Length 1581 >>
+stream
+BT /F1 10 Tf 50 790 Td 14 TL
+() Tj
+T*
+(  Guest --> Register) Tj
+T*
+(  Guest --> Login) Tj
+T*
+(  Guest --> SearchHotel) Tj
+T*
+(  Guest --> SearchFlight) Tj
+T*
+(  Guest --> SearchBus) Tj
+T*
+(  Guest --> Chatbot) Tj
+T*
+(  User --> Book) Tj
+T*
+(  User --> Pay) Tj
+T*
+(  User --> History) Tj
+T*
+(  User --> ViewDetails) Tj
+T*
+(  Admin --> ManageHotel) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## ACTIVITY DIAGRAM) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+([mermaid]) Tj
+T*
+(flowchart TD) Tj
+T*
+(  Start\([Start]\) --> Open[Open Romify]) Tj
+T*
+(  Open --> Search[Search hotel, flight, or bus]) Tj
+T*
+(  Search --> Select[Select travel option]) Tj
+T*
+(  Select --> Auth{Logged in-}) Tj
+T*
+(  Auth -- No --> Login[Login or Register]) Tj
+T*
+(  Login --> BookingForm[Enter booking details]) Tj
+T*
+(  Auth -- Yes --> BookingForm) Tj
+T*
+(  BookingForm --> Payment[Enter payment details]) Tj
+T*
+(  Payment --> Confirm[Confirm booking]) Tj
+T*
+(  Confirm --> History[Show booking history]) Tj
+T*
+(  History --> End\([End]\)) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## SEQUENCE DIAGRAM) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+([mermaid]) Tj
+T*
+(sequenceDiagram) Tj
+T*
+(  actor User) Tj
+T*
+(  participant UI as Angular UI) Tj
+T*
+(  participant API as Spring Boot API) Tj
+T*
+(  participant Repo as JPA Repository) Tj
+T*
+(  participant DB as MySQL) Tj
+T*
+() Tj
+T*
+(  User->>UI: Enter booking details) Tj
+T*
+(  UI->>API: POST /api/bookings with JWT) Tj
+T*
+(  API->>API: Validate user and request) Tj
+ET
+endstream
+endobj
+25 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 24 0 R >>
+endobj
+26 0 obj
+<< /Length 1636 >>
+stream
+BT /F1 10 Tf 50 790 Td 14 TL
+(  API->>Repo: Find selected hotel/flight/bus) Tj
+T*
+(  Repo->>DB: Query product table) Tj
+T*
+(  DB-->>Repo: Product record) Tj
+T*
+(  API->>Repo: Save booking) Tj
+T*
+(  Repo->>DB: Insert booking) Tj
+T*
+(  DB-->>Repo: Saved booking) Tj
+T*
+(  API-->>UI: Booking response) Tj
+T*
+(  UI-->>User: Show confirmation) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## COMPONENT DIAGRAM) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+([mermaid]) Tj
+T*
+(flowchart LR) Tj
+T*
+(  App[App Module] --> Shared[Shared Module]) Tj
+T*
+(  App --> Home[Home Module]) Tj
+T*
+(  App --> Auth[Auth Module]) Tj
+T*
+(  App --> Hotels[Hotels Module]) Tj
+T*
+(  App --> Flights[Flights Module]) Tj
+T*
+(  App --> Buses[Buses Module]) Tj
+T*
+(  App --> Booking[Booking Module]) Tj
+T*
+(  App --> Admin[Admin Module]) Tj
+T*
+(  Shared --> Navbar[Navbar Component]) Tj
+T*
+(  Shared --> Footer[Footer Component]) Tj
+T*
+(  Shared --> Loader[Loader Component]) Tj
+T*
+(  Shared --> Chatbot[Travel Chatbot Component]) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## MODULE HIERARCHY DIAGRAM) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+([mermaid]) Tj
+T*
+(flowchart TD) Tj
+T*
+(  Romify[Romify Application]) Tj
+T*
+(  Romify --> Frontend[Angular Frontend]) Tj
+T*
+(  Romify --> Backend[Spring Boot Backend]) Tj
+T*
+(  Romify --> Database[MySQL Database]) Tj
+T*
+() Tj
+T*
+(  Frontend --> Home) Tj
+T*
+(  Frontend --> Auth) Tj
+T*
+(  Frontend --> Hotels) Tj
+T*
+(  Frontend --> Flights) Tj
+T*
+(  Frontend --> Buses) Tj
+T*
+(  Frontend --> Booking) Tj
+T*
+(  Frontend --> Payment) Tj
+ET
+endstream
+endobj
+27 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 26 0 R >>
+endobj
+28 0 obj
+<< /Length 1784 >>
+stream
+BT /F1 10 Tf 50 790 Td 14 TL
+(  Frontend --> Admin) Tj
+T*
+(  Frontend --> Chatbot) Tj
+T*
+() Tj
+T*
+(  Backend --> AuthAPI[Auth API]) Tj
+T*
+(  Backend --> HotelAPI[Hotel API]) Tj
+T*
+(  Backend --> FlightAPI[Flight API]) Tj
+T*
+(  Backend --> BusAPI[Bus API]) Tj
+T*
+(  Backend --> BookingAPI[Booking API]) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## TABLE DESIGN) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(### users) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(| Field | Type | Constraint | Description |) Tj
+T*
+(|---|---|---|---|) Tj
+T*
+(| id | BIGINT | Primary Key | User ID |) Tj
+T*
+(| name | VARCHAR | Not Null | User full name |) Tj
+T*
+(| email | VARCHAR | Unique, Not Null | User email |) Tj
+T*
+(| password | VARCHAR | Not Null | Encrypted password |) Tj
+T*
+(| role | VARCHAR | Not Null | USER or ADMIN |) Tj
+T*
+() Tj
+T*
+(### hotel) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(| Field | Type | Constraint | Description |) Tj
+T*
+(|---|---|---|---|) Tj
+T*
+(| id | BIGINT | Primary Key | Hotel ID |) Tj
+T*
+(| name | VARCHAR | Not Null | Hotel name |) Tj
+T*
+(| location | VARCHAR | Not Null | Hotel location |) Tj
+T*
+(| price_per_night | DECIMAL | Positive | Room price |) Tj
+T*
+(| rating | DOUBLE | Optional | Hotel rating |) Tj
+T*
+(| description | VARCHAR | Optional | Hotel description |) Tj
+T*
+(| featured | BOOLEAN | Default false | Featured hotel flag |) Tj
+T*
+() Tj
+T*
+(### flight) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(| Field | Type | Constraint | Description |) Tj
+T*
+(|---|---|---|---|) Tj
+T*
+(| id | BIGINT | Primary Key | Flight ID |) Tj
+T*
+(| airline | VARCHAR | Not Null | Airline name |) Tj
+T*
+(| flight_number | VARCHAR | Not Null | Flight number |) Tj
+T*
+(| from_city | VARCHAR | Not Null | Source city |) Tj
+T*
+(| to_city | VARCHAR | Not Null | Destination city |) Tj
+ET
+endstream
+endobj
+29 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 28 0 R >>
+endobj
+30 0 obj
+<< /Length 2426 >>
+stream
+BT /F1 10 Tf 50 790 Td 14 TL
+(| departure_time | VARCHAR | Optional | Departure time |) Tj
+T*
+(| arrival_time | VARCHAR | Optional | Arrival time |) Tj
+T*
+(| duration | VARCHAR | Optional | Duration |) Tj
+T*
+(| stops | INT | Default 0 | Number of stops |) Tj
+T*
+(| price | DECIMAL | Positive | Ticket price |) Tj
+T*
+(| rating | DOUBLE | Optional | Flight rating |) Tj
+T*
+(| cabin_class | VARCHAR | Optional | Economy, Business, etc. |) Tj
+T*
+() Tj
+T*
+(### bus) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(| Field | Type | Constraint | Description |) Tj
+T*
+(|---|---|---|---|) Tj
+T*
+(| id | BIGINT | Primary Key | Bus ID |) Tj
+T*
+(| operator | VARCHAR | Not Null | Bus operator |) Tj
+T*
+(| bus_number | VARCHAR | Not Null | Bus number |) Tj
+T*
+(| from_city | VARCHAR | Not Null | Source city |) Tj
+T*
+(| to_city | VARCHAR | Not Null | Destination city |) Tj
+T*
+(| departure_time | VARCHAR | Optional | Departure time |) Tj
+T*
+(| arrival_time | VARCHAR | Optional | Arrival time |) Tj
+T*
+(| duration | VARCHAR | Optional | Travel duration |) Tj
+T*
+(| bus_type | VARCHAR | Optional | AC Sleeper, Volvo, etc. |) Tj
+T*
+(| seats_available | INT | Optional | Available seats |) Tj
+T*
+(| price | DECIMAL | Positive | Ticket price |) Tj
+T*
+(| rating | DOUBLE | Optional | Bus rating |) Tj
+T*
+() Tj
+T*
+(### booking) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(| Field | Type | Constraint | Description |) Tj
+T*
+(|---|---|---|---|) Tj
+T*
+(| id | BIGINT | Primary Key | Booking ID |) Tj
+T*
+(| product_type | VARCHAR | Enum | HOTEL, FLIGHT, BUS |) Tj
+T*
+(| status | VARCHAR | Enum | CONFIRMED, PENDING, CANCELLED |) Tj
+T*
+(| user_id | BIGINT | Foreign Key | User who created booking |) Tj
+T*
+(| hotel_id | BIGINT | Foreign Key | Selected hotel |) Tj
+T*
+(| flight_id | BIGINT | Foreign Key | Selected flight |) Tj
+T*
+(| bus_id | BIGINT | Foreign Key | Selected bus |) Tj
+T*
+(| guest_name | VARCHAR | Not Null | Passenger or guest name |) Tj
+T*
+(| email | VARCHAR | Email | Contact email |) Tj
+T*
+(| check_in | VARCHAR | Optional | Hotel check-in |) Tj
+T*
+(| check_out | VARCHAR | Optional | Hotel check-out |) Tj
+T*
+(| departure_date | VARCHAR | Optional | Travel departure date |) Tj
+T*
+(| return_date | VARCHAR | Optional | Return date |) Tj
+T*
+(| guests | INT | Optional | Number of guests |) Tj
+T*
+(| passengers | INT | Optional | Number of passengers |) Tj
+T*
+(| title | VARCHAR | Optional | Booking title |) Tj
+T*
+(| route | VARCHAR | Optional | Route or location |) Tj
+ET
+endstream
+endobj
+31 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 30 0 R >>
+endobj
+32 0 obj
+<< /Length 2108 >>
+stream
+BT /F1 10 Tf 50 790 Td 14 TL
+(| travel_date | VARCHAR | Optional | Travel date |) Tj
+T*
+(| price | DECIMAL | Optional | Booking amount |) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## DATA DICTIONARY) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(| Term | Meaning |) Tj
+T*
+(|---|---|) Tj
+T*
+(| User | A registered customer or admin of the system. |) Tj
+T*
+(| Hotel | A stay option available for booking. |) Tj
+T*
+(| Flight | A flight option available for booking. |) Tj
+T*
+(| Bus | A bus option available for booking. |) Tj
+T*
+(| Booking | A confirmed travel reservation made by a user. |) Tj
+T*
+(| Product Type | Category of booking: hotel, flight, or bus. |) Tj
+T*
+(| JWT | JSON Web Token used for secure API access. |) Tj
+T*
+(| Admin | A privileged user who can manage records. |) Tj
+T*
+(| Chatbot | A UI assistant that suggests places based on city name. |) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## IMPLEMENTATION) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(The system is implemented as a full-stack web application.) Tj
+T*
+() Tj
+T*
+(Frontend Implementation:) Tj
+T*
+() Tj
+T*
+(- Angular modules are used for feature separation.) Tj
+T*
+(- Components are used for pages such as home, hotel list, flight list, bus list, booking,) Tj
+T*
+(  payment, and admin dashboard.) Tj
+T*
+(- Services communicate with REST APIs using HTTP client.) Tj
+T*
+(- JWT interceptor attaches authentication token to protected API requests.) Tj
+T*
+(- Shared components include navbar, footer, loader, hotel card, and chatbot.) Tj
+T*
+() Tj
+T*
+(Backend Implementation:) Tj
+T*
+() Tj
+T*
+(- Spring Boot exposes REST APIs.) Tj
+T*
+(- Controllers handle requests and responses.) Tj
+T*
+(- JPA repositories perform database operations.) Tj
+T*
+(- Entity classes map Java objects to database tables.) Tj
+T*
+(- Spring Security handles authentication and authorization.) Tj
+T*
+(- JWT service generates and validates tokens.) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## INPUT SCREENS) Tj
+ET
+endstream
+endobj
+33 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 32 0 R >>
+endobj
+34 0 obj
+<< /Length 2147 >>
+stream
+BT /F1 10 Tf 50 790 Td 14 TL
+() Tj
+T*
+() Tj
+T*
+(Screens should be inserted in the final Word/PDF report with valid data. Suggested screenshots:) Tj
+T*
+() Tj
+T*
+(| Screen | Sample Valid Data |) Tj
+T*
+(|---|---|) Tj
+T*
+(| Register | Name: Vishwajeet, Email: jeet@example.com, Password: Jeet@123 |) Tj
+T*
+(| Login | Email: jeet@example.com, Password: Jeet@123 |) Tj
+T*
+(| Hotel Search | Location: Goa, Check-in: 2026-06-10, Check-out: 2026-06-12 |) Tj
+T*
+(| Flight Search | From: Delhi, To: Goa, Date: 2026-06-10 |) Tj
+T*
+(| Bus Search | From: Bengaluru, To: Goa, Date: 2026-06-10 |) Tj
+T*
+(| Booking Form | Guest: Vishwajeet, Email: jeet@example.com, Guests: 2 |) Tj
+T*
+(| Payment Form | Card Holder: Vishwajeet, Card Number: 4111111111111111 |) Tj
+T*
+(| Chatbot | City: Pune |) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## OUTPUT SCREENS / REPORTS) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(All reports should contain at least 5 valid records in the final document.) Tj
+T*
+() Tj
+T*
+(### Sample Hotel Report) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(| Sr. No. | Hotel Name | Location | Price | Rating |) Tj
+T*
+(|---|---|---|---|---|) Tj
+T*
+(| 1 | Azure Bay Resort | Goa | 5499 | 4.7 |) Tj
+T*
+(| 2 | Himalayan Cedar Retreat | Manali | 4299 | 4.6 |) Tj
+T*
+(| 3 | The Metro Grand | Mumbai | 3899 | 4.4 |) Tj
+T*
+(| 4 | Lakefront Palace | Udaipur | 6199 | 4.8 |) Tj
+T*
+(| 5 | City Comfort Inn | Pune | 2999 | 4.2 |) Tj
+T*
+() Tj
+T*
+(### Sample Booking Report) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(| Booking ID | User | Product | Route / Location | Travel Date | Amount | Status |) Tj
+T*
+(|---|---|---|---|---|---|---|) Tj
+T*
+(| 1 | Vishwajeet | HOTEL | Goa | 2026-06-10 | 5499 | CONFIRMED |) Tj
+T*
+(| 2 | Aarav | FLIGHT | Delhi to Goa | 2026-06-15 | 6200 | CONFIRMED |) Tj
+T*
+(| 3 | Priya | BUS | Bengaluru to Goa | 2026-06-20 | 1450 | CONFIRMED |) Tj
+T*
+(| 4 | Neha | HOTEL | Manali | 2026-07-01 | 4299 | CONFIRMED |) Tj
+T*
+(| 5 | Rohan | FLIGHT | Mumbai to Delhi | 2026-07-05 | 5100 | CONFIRMED |) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## SAMPLE CODE) Tj
+T*
+() Tj
+ET
+endstream
+endobj
+35 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 34 0 R >>
+endobj
+36 0 obj
+<< /Length 1828 >>
+stream
+BT /F1 10 Tf 50 790 Td 14 TL
+() Tj
+T*
+(### Booking API Controller) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+([java]) Tj
+T*
+(@PostMapping) Tj
+T*
+(@ResponseStatus\(HttpStatus.CREATED\)) Tj
+T*
+(public Booking createBooking\(@Valid @RequestBody BookingRequest request, Principal principal\) {) Tj
+T*
+(  var user = userRepository.findByEmail\(principal.getName\(\)\)) Tj
+T*
+(      .orElseThrow\(\(\) -> new ResponseStatusException\(HttpStatus.UNAUTHORIZED, "User not found."\)\);) Tj
+T*
+() Tj
+T*
+(  var booking = new Booking\(\);) Tj
+T*
+(  booking.setUser\(user\);) Tj
+T*
+(  booking.setStatus\(BookingStatus.CONFIRMED\);) Tj
+T*
+(  booking.setGuestName\(request.guestName\(\)\);) Tj
+T*
+(  booking.setEmail\(request.email\(\)\);) Tj
+T*
+() Tj
+T*
+(  attachProduct\(booking, request\);) Tj
+T*
+(  return bookingRepository.save\(booking\);) Tj
+T*
+(}) Tj
+T*
+() Tj
+T*
+(### Chatbot City Matching) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+([typescript]) Tj
+T*
+(private findGuide\(city: string\): CityGuide | undefined {) Tj
+T*
+(  const normalizedCity = this.normalize\(city\);) Tj
+T*
+(  return CITY_GUIDES.find\(\(guide\) =>) Tj
+T*
+(    guide.aliases.some\(\(alias\) => this.normalize\(alias\) === normalizedCity\)) Tj
+T*
+(  \);) Tj
+T*
+(}) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## TESTING) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(Testing was performed to verify frontend forms, backend APIs, authentication, booking workflow,) Tj
+T*
+(and chatbot city suggestions.) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## TEST STRATEGY) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(- Unit-level checking of component methods and backend methods.) Tj
+T*
+(- Integration testing between Angular services and Spring Boot APIs.) Tj
+T*
+(- Form validation testing for invalid and valid inputs.) Tj
+ET
+endstream
+endobj
+37 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 36 0 R >>
+endobj
+38 0 obj
+<< /Length 2232 >>
+stream
+BT /F1 10 Tf 50 790 Td 14 TL
+(- Authentication testing for protected routes and APIs.) Tj
+T*
+(- Manual UI testing for responsive layout and user flow.) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## UNIT TEST PLAN) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(| Module | Test Focus |) Tj
+T*
+(|---|---|) Tj
+T*
+(| Auth | Register, login, duplicate email validation |) Tj
+T*
+(| Hotels | List, filter, detail, create/update/delete |) Tj
+T*
+(| Flights | List, filter, price sorting |) Tj
+T*
+(| Buses | List, filter, price sorting |) Tj
+T*
+(| Booking | Create booking and fetch booking history |) Tj
+T*
+(| Payment | Validate card and UPI input flow |) Tj
+T*
+(| Chatbot | City input, alias matching, fallback message |) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## ACCEPTANCE OF TEST PLAN) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(The test plan is accepted when:) Tj
+T*
+() Tj
+T*
+(- Users can register and log in successfully.) Tj
+T*
+(- Travel products are listed correctly.) Tj
+T*
+(- Search and filters return expected records.) Tj
+T*
+(- Authenticated users can create bookings.) Tj
+T*
+(- Booking history shows user-specific bookings.) Tj
+T*
+(- Admin can manage records.) Tj
+T*
+(- Chatbot returns places for supported cities.) Tj
+T*
+(- Build completes without errors.) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## TEST CASES) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(| Test Case ID | Scenario | Input | Expected Result | Status |) Tj
+T*
+(|---|---|---|---|---|) Tj
+T*
+(| TC-01 | User registration | Valid name, email, password | Account is created | Pass |) Tj
+T*
+(| TC-02 | User login | Valid credentials | JWT token is generated | Pass |) Tj
+T*
+(| TC-03 | Duplicate registration | Existing email | Error message is shown | Pass |) Tj
+T*
+(| TC-04 | Hotel search | Location: Goa | Goa hotels are displayed | Pass |) Tj
+T*
+(| TC-05 | Flight search | From: Delhi, To: Goa | Matching flights are displayed | Pass |) Tj
+T*
+(| TC-06 | Bus search | From: Bengaluru, To: Goa | Matching buses are displayed | Pass |) Tj
+T*
+(| TC-07 | Booking creation | Valid booking form | Booking is confirmed | Pass |) Tj
+ET
+endstream
+endobj
+39 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 38 0 R >>
+endobj
+40 0 obj
+<< /Length 2448 >>
+stream
+BT /F1 10 Tf 50 790 Td 14 TL
+(| TC-08 | Booking history | Logged-in user | User bookings are shown | Pass |) Tj
+T*
+(| TC-09 | Admin hotel update | Valid hotel data | Hotel record is updated | Pass |) Tj
+T*
+(| TC-10 | Chatbot city search | Pune | Popular Pune places are shown | Pass |) Tj
+T*
+(| TC-11 | Chatbot alias search | Hydrabad | Hyderabad places are shown | Pass |) Tj
+T*
+(| TC-12 | Unknown chatbot city | Random city | Fallback message is shown | Pass |) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## RESULTS) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(The Romify application successfully provides travel search and booking functionality. Users can) Tj
+T*
+(register, log in, search hotels, flights, and buses, create bookings, view booking history, and) Tj
+T*
+(use the chatbot for city place suggestions. The Angular production build is successful.) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## CONCLUSION) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(The Romify Travel Booking System fulfills the objective of creating a centralized platform for) Tj
+T*
+(travel booking services. It improves user convenience by combining hotels, flights, buses,) Tj
+T*
+(booking history, payment workflow, and city guide assistance into one web application.) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## SUMMARY / CONCLUSION) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(This project demonstrates full-stack application development using Angular, Spring Boot, and) Tj
+T*
+(MySQL. It includes modular frontend design, REST API development, JWT-based authentication,) Tj
+T*
+(database integration, and a practical chatbot feature.) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## LIMITATIONS OF THE SYSTEM) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(- Payment gateway is implemented as a workflow screen, not a real payment integration.) Tj
+T*
+(- Travel inventory is seeded/static and not connected to live suppliers.) Tj
+T*
+(- Chatbot uses predefined city data and does not call an external AI or tourism API.) Tj
+T*
+(- Admin management is mainly focused on hotel records.) Tj
+T*
+(- No email or SMS notification is currently implemented.) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## FUTURE ENHANCEMENTS) Tj
+T*
+() Tj
+ET
+endstream
+endobj
+41 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 40 0 R >>
+endobj
+42 0 obj
+<< /Length 2041 >>
+stream
+BT /F1 10 Tf 50 790 Td 14 TL
+() Tj
+T*
+(- Integrate real payment gateway such as Razorpay or Stripe.) Tj
+T*
+(- Add live hotel, flight, and bus APIs.) Tj
+T*
+(- Add cancellation and refund workflow.) Tj
+T*
+(- Add email and SMS booking notifications.) Tj
+T*
+(- Add advanced admin dashboard with analytics.) Tj
+T*
+(- Add AI-based chatbot with dynamic tourism information.) Tj
+T*
+(- Add reviews and ratings from users.) Tj
+T*
+(- Add multi-language support.) Tj
+T*
+(- Add PDF invoice generation.) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## REFERENCES / BIBLIOGRAPHY) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(- Angular Documentation: https://angular.dev/) Tj
+T*
+(- Spring Boot Documentation: https://spring.io/projects/spring-boot) Tj
+T*
+(- Spring Security Documentation: https://spring.io/projects/spring-security) Tj
+T*
+(- MySQL Documentation: https://dev.mysql.com/doc/) Tj
+T*
+(- Hibernate ORM Documentation: https://hibernate.org/orm/documentation/) Tj
+T*
+(- MDN Web Docs: https://developer.mozilla.org/) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## APPENDICES) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(The appendices contain additional screens, progress tracking, and supporting project) Tj
+T*
+(information.) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## ANNEXURE I - ADDITIONAL INPUT AND OUTPUT SCREENS) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(Suggested screenshots to include:) Tj
+T*
+() Tj
+T*
+(- Home page with search panel.) Tj
+T*
+(- Hotel listing page with at least 5 records.) Tj
+T*
+(- Hotel detail page.) Tj
+T*
+(- Flight listing page with at least 5 records.) Tj
+T*
+(- Bus listing page with at least 5 records.) Tj
+T*
+(- Booking form with valid user data.) Tj
+T*
+(- Payment page with valid sample data.) Tj
+T*
+(- Booking history page with at least 5 records.) Tj
+T*
+(- Admin dashboard.) Tj
+T*
+(- Chatbot showing places for Pune, Mumbai, Nagpur, Ahmedabad, Nashik, Satara, Kolhapur, and) Tj
+ET
+endstream
+endobj
+43 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 42 0 R >>
+endobj
+44 0 obj
+<< /Length 789 >>
+stream
+BT /F1 10 Tf 50 790 Td 14 TL
+(  Hyderabad.) Tj
+T*
+() Tj
+T*
+(------------------------------------------------------------------------) Tj
+T*
+() Tj
+T*
+(## ANNEXURE II - PROGRESS SHEET) Tj
+T*
+() Tj
+T*
+() Tj
+T*
+(| Week | Work Completed | Guide Remark | Signature |) Tj
+T*
+(|---|---|---|---|) Tj
+T*
+(| Week 1 | Requirement gathering and project planning |  |  |) Tj
+T*
+(| Week 2 | Frontend layout and routing setup |  |  |) Tj
+T*
+(| Week 3 | Backend API and database setup |  |  |) Tj
+T*
+(| Week 4 | Authentication and JWT security |  |  |) Tj
+T*
+(| Week 5 | Hotel, flight, and bus modules |  |  |) Tj
+T*
+(| Week 6 | Booking and payment workflow |  |  |) Tj
+T*
+(| Week 7 | Admin dashboard and chatbot |  |  |) Tj
+T*
+(| Week 8 | Testing, build verification, and report preparation |  |  |) Tj
+ET
+endstream
+endobj
+45 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 44 0 R >>
+endobj
+xref
+0 46
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000254 00000 n 
+0000000324 00000 n 
+0000002315 00000 n 
+0000002441 00000 n 
+0000004791 00000 n 
+0000004917 00000 n 
+0000007113 00000 n 
+0000007239 00000 n 
+0000009196 00000 n 
+0000009324 00000 n 
+0000011152 00000 n 
+0000011280 00000 n 
+0000013657 00000 n 
+0000013785 00000 n 
+0000015606 00000 n 
+0000015734 00000 n 
+0000016974 00000 n 
+0000017102 00000 n 
+0000018359 00000 n 
+0000018487 00000 n 
+0000019917 00000 n 
+0000020045 00000 n 
+0000021679 00000 n 
+0000021807 00000 n 
+0000023496 00000 n 
+0000023624 00000 n 
+0000025461 00000 n 
+0000025589 00000 n 
+0000028068 00000 n 
+0000028196 00000 n 
+0000030357 00000 n 
+0000030485 00000 n 
+0000032685 00000 n 
+0000032813 00000 n 
+0000034694 00000 n 
+0000034822 00000 n 
+0000037107 00000 n 
+0000037235 00000 n 
+0000039736 00000 n 
+0000039864 00000 n 
+0000041958 00000 n 
+0000042086 00000 n 
+0000042927 00000 n 
+trailer
+<< /Size 46 /Root 1 0 R >>
+startxref
+43055
+%%EOF

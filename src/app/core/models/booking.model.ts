@@ -28,4 +28,26 @@ export interface Booking extends BookingPayload {
   flight?: Flight;
   bus?: Bus;
   totalAmount?: number;
+  paymentStatus?: 'PENDING' | 'SUCCESS' | 'FAILED';
+  paymentGateway?: string;
+  paymentQrId?: string;
+  paymentQrImageUrl?: string;
+  paymentId?: string;
+}
+
+export interface PaymentQrResponse {
+  bookingId: number;
+  gateway: string;
+  qrId: string;
+  imageUrl: string;
+  amount: number;
+  status: 'PENDING' | 'SUCCESS' | 'FAILED';
+  message: string;
+}
+
+export interface PaymentStatusResponse {
+  bookingId: number;
+  status: 'PENDING' | 'SUCCESS' | 'FAILED';
+  paymentId?: string;
+  message: string;
 }

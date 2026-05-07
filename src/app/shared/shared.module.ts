@@ -6,13 +6,15 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HotelCardComponent } from './components/hotel-card/hotel-card.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { TravelChatbotComponent } from './components/travel-chatbot/travel-chatbot.component';
 
 @NgModule({
   declarations: [
     FooterComponent,
     HotelCardComponent,
     LoaderComponent,
-    NavbarComponent
+    NavbarComponent,
+    TravelChatbotComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     FooterComponent,
     HotelCardComponent,
     LoaderComponent,
-    NavbarComponent
+    NavbarComponent,
+    TravelChatbotComponent
   ]
 })
 export class SharedModule {}

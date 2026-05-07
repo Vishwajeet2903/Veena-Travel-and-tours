@@ -1,0 +1,32 @@
+<div class="chatbot" [class.chatbot--open]="isOpen">
+  <button class="chatbot__toggle" type="button" (click)="toggleChat()" [attr.aria-expanded]="isOpen" aria-label="Open travel chatbot">
+    <span>?</span>
+  </button>
+
+  <section class="chatbot__panel" *ngIf="isOpen" aria-label="Travel place suggestions">
+    <header class="chatbot__header">
+      <div>
+        <strong>Romify Guide</strong>
+        <span>City places finder</span>
+      </div>
+      <button type="button" (click)="toggleChat()" aria-label="Close travel chatbot">x</button>
+    </header>
+
+    <div class="chatbot__messages">
+      <article class="chatbot__message" *ngFor="let message of messages" [class.chatbot__message--user]="message.author === 'user'">
+        <p>{{ message.text }}</p>
+        <ul *ngIf="message.places?.length">
+          <li *ngFor="let place of message.places">{{ place }}</li>
+        </ul>
+      </article>
+    </div>
+
+    <form class="chatbot__form" (ngSubmit)="suggestPlaces()">
+      <label for="chatbotCity">City</label>
+      <div>
+        <input id="chatbotCity" type="text" [value]="cityName" (input)="updateCity($event)" placeholder="Enter city name">
+        <button class="btn" type="submit">Find</button>
+      </div>
+    </form>
+  </section>
+</div>

@@ -60,7 +60,8 @@ public class BookingController {
 
     var booking = new Booking();
     booking.setUser(user);
-    booking.setStatus(BookingStatus.CONFIRMED);
+    booking.setStatus(BookingStatus.PENDING);
+    booking.setPaymentStatus("PENDING");
     booking.setGuestName(request.guestName());
     booking.setEmail(request.email());
     booking.setCheckIn(request.checkIn());

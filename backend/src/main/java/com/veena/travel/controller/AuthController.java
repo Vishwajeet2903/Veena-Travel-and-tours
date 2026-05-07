@@ -8,6 +8,7 @@ import com.veena.travel.model.Role;
 import com.veena.travel.model.User;
 import com.veena.travel.repository.UserRepository;
 import com.veena.travel.security.JwtService;
+import com.veena.travel.service.EmailService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,19 +30,22 @@ public class AuthController {
   private final JwtService jwtService;
   private final UserRepository userRepository;
   private final PasswordEncoder passwordEncoder;
+  private final EmailService emailService;
 
   public AuthController(
       AuthenticationManager authenticationManager,
       UserDetailsService userDetailsService,
       JwtService jwtService,
       UserRepository userRepository,
-      PasswordEncoder passwordEncoder
+      PasswordEncoder passwordEncoder,
+      EmailService emailService
   ) {
     this.authenticationManager = authenticationManager;
     this.userDetailsService = userDetailsService;
     this.jwtService = jwtService;
     this.userRepository = userRepository;
     this.passwordEncoder = passwordEncoder;
+    this.emailService = emailService;
   }
 
   @PostMapping("/login")
@@ -69,6 +73,7 @@ public class AuthController {
     user.setRole(Role.USER);
 
     var savedUser = userRepository.save(user);
+    emailService.sendRegistrationEmail(savedUser);
     var token = jwtService.generateToken(userDetailsService.loadUserByUsername(savedUser.getEmail()));
     return new AuthResponse(token, UserResponse.from(savedUser));
   }
