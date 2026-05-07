@@ -3,7 +3,14 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, of, tap, throwError } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
-import { Booking, BookingPayload, PaymentQrResponse, PaymentStatusResponse } from '../models/booking.model';
+import {
+  Booking,
+  BookingPayload,
+  PaymentOrderResponse,
+  PaymentQrResponse,
+  PaymentStatusResponse,
+  VerifyPaymentPayload
+} from '../models/booking.model';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +36,26 @@ export class BookingService {
 
   getLocalBookingById(id: number): Booking | undefined {
     return this.readLocalBookings().find((booking) => booking.id === id);
+  }
+
+  createPaymentOrder(bookingId: number): Observable<PaymentOrderResponse> {
+    return this.http.post<PaymentOrderResponse>(`${environment.apiUrl}/payments/bookings/${bookingId}/order`, {}).pipe(
+      tap((payment) => this.patchLocalBooking(bookingId, {
+        paymentGateway: payment.gateway,
+        paymentOrderId: payment.orderId,
+        paymentStatus: payment.status
+      }))
+    );
+  }
+
+  verifyPayment(bookingId: number, payload: VerifyPaymentPayload): Observable<PaymentStatusResponse> {
+    return this.http.post<PaymentStatusResponse>(`${environment.apiUrl}/payments/bookings/${bookingId}/verify`, payload).pipe(
+      tap((payment) => this.patchLocalBooking(bookingId, {
+        status: payment.status === 'SUCCESS' ? 'CONFIRMED' : payment.status === 'FAILED' ? 'CANCELLED' : 'PENDING',
+        paymentStatus: payment.status,
+        paymentId: payment.paymentId
+      }))
+    );
   }
 
   createPaymentQr(bookingId: number): Observable<PaymentQrResponse> {

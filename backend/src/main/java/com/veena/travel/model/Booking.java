@@ -56,6 +56,7 @@ public class Booking {
   private BigDecimal price;
   private String paymentStatus = "PENDING";
   private String paymentGateway;
+  private String paymentOrderId;
   private String paymentQrId;
   private String paymentQrImageUrl;
   private String paymentId;
@@ -226,6 +227,14 @@ public class Booking {
 
   public void setPaymentGateway(String paymentGateway) {
     this.paymentGateway = paymentGateway;
+  }
+
+  public String getPaymentOrderId() {
+    return paymentOrderId;
+  }
+
+  public void setPaymentOrderId(String paymentOrderId) {
+    this.paymentOrderId = paymentOrderId;
   }
 
   public String getPaymentQrId() {

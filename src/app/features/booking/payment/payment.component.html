@@ -1,22 +1,46 @@
 <section class="container payment-page" *ngIf="booking; else missingBooking">
   <div>
     <p class="eyebrow">Payment</p>
-    <h1>Scan UPI QR</h1>
+    <h1>Complete payment</h1>
 
     <div class="payment-form">
-      <div class="qr-payment">
-        <img class="qr-payment__code" *ngIf="paymentQrImageUrl" [src]="paymentQrImageUrl" alt="Razorpay fixed amount UPI QR code">
-        <div class="qr-payment__placeholder" *ngIf="!paymentQrImageUrl">
-          {{ isCreatingQr ? 'Creating QR...' : 'QR unavailable' }}
-        </div>
-        <div class="qr-payment__details">
-          <strong>Razorpay fixed-amount UPI QR</strong>
+      <div class="checkout-payment">
+        <div class="checkout-payment__mark">R</div>
+        <div class="checkout-payment__details">
+          <strong>Razorpay Checkout</strong>
           <p>{{ paymentMessage }}</p>
           <div>
             <span>Amount</span>
             <b>{{ payableAmount | currency:'INR':'symbol':'1.0-0' }}</b>
           </div>
+          <div class="payment-actions">
+            <button class="btn" type="button" (click)="payWithRazorpay()" [disabled]="isCreatingOrder || isVerifyingPayment">
+              {{ isCreatingOrder ? 'Creating order...' : isVerifyingPayment ? 'Verifying...' : 'Pay with Razorpay' }}
+            </button>
+            <button class="btn secondary" type="button" (click)="checkPaymentStatus()" [disabled]="isCheckingStatus">
+              {{ isCheckingStatus ? 'Checking...' : 'Check status' }}
+            </button>
+          </div>
+          <div class="alert" *ngIf="successMessage">{{ successMessage }}</div>
           <div class="alert error" *ngIf="errorMessage">{{ errorMessage }}</div>
+        </div>
+      </div>
+
+      <div class="qr-payment">
+        <img class="qr-payment__code" *ngIf="paymentQrImageUrl" [src]="paymentQrImageUrl" alt="Razorpay fixed amount UPI QR code">
+        <div class="qr-payment__placeholder" *ngIf="!paymentQrImageUrl">
+          {{ isCreatingQr ? 'Creating QR...' : 'UPI QR' }}
+        </div>
+        <div class="qr-payment__details">
+          <strong>UPI QR fallback</strong>
+          <p>Use this only if Razorpay Checkout is unavailable for your account.</p>
+          <div>
+            <span>Amount</span>
+            <b>{{ payableAmount | currency:'INR':'symbol':'1.0-0' }}</b>
+          </div>
+          <button class="btn secondary" type="button" (click)="createRazorpayQr()" [disabled]="isCreatingQr">
+            {{ isCreatingQr ? 'Creating QR...' : 'Create UPI QR' }}
+          </button>
         </div>
       </div>
     </div>

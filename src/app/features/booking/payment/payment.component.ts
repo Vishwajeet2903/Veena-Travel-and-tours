@@ -4,6 +4,38 @@ import { ActivatedRoute } from '@angular/router';
 import { Booking } from '../../../core/models/booking.model';
 import { BookingService } from '../../../core/services/booking.service';
 
+declare global {
+  interface Window {
+    Razorpay?: new (options: RazorpayOptions) => { open: () => void };
+  }
+}
+
+interface RazorpayOptions {
+  key: string;
+  amount: number;
+  currency: string;
+  name: string;
+  description: string;
+  order_id: string;
+  prefill: {
+    name: string;
+    email: string;
+  };
+  theme: {
+    color: string;
+  };
+  handler: (response: RazorpaySuccessResponse) => void;
+  modal: {
+    ondismiss: () => void;
+  };
+}
+
+interface RazorpaySuccessResponse {
+  razorpay_payment_id: string;
+  razorpay_order_id: string;
+  razorpay_signature: string;
+}
+
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
@@ -13,9 +45,14 @@ import { BookingService } from '../../../core/services/booking.service';
 export class PaymentComponent implements OnInit {
   booking?: Booking;
   paymentQrImageUrl = '';
-  paymentMessage = 'Creating fixed-amount Razorpay UPI QR...';
+  paymentMessage = 'Create a secure Razorpay payment for this booking.';
   errorMessage = '';
+  successMessage = '';
   isCreatingQr = false;
+  isCreatingOrder = false;
+  isVerifyingPayment = false;
+  isCheckingStatus = false;
+  bookingId = 0;
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -23,9 +60,8 @@ export class PaymentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const bookingId = Number(this.route.snapshot.paramMap.get('bookingId'));
-    this.booking = this.bookingService.getLocalBookingById(bookingId);
-    this.createRazorpayQr(bookingId);
+    this.bookingId = Number(this.route.snapshot.paramMap.get('bookingId'));
+    this.booking = this.bookingService.getLocalBookingById(this.bookingId);
   }
 
   get payableAmount(): number {
@@ -34,13 +70,35 @@ export class PaymentComponent implements OnInit {
     return unitPrice * Math.max(1, count);
   }
 
-  private createRazorpayQr(bookingId: number): void {
-    if (!bookingId) {
+  payWithRazorpay(): void {
+    if (!this.bookingId || this.isCreatingOrder || this.isVerifyingPayment) {
+      return;
+    }
+
+    this.isCreatingOrder = true;
+    this.errorMessage = '';
+    this.successMessage = '';
+    this.bookingService.createPaymentOrder(this.bookingId).subscribe({
+      next: (order) => {
+        this.isCreatingOrder = false;
+        this.openCheckout(order);
+      },
+      error: (error) => {
+        this.isCreatingOrder = false;
+        this.errorMessage = this.readErrorMessage(error, 'Unable to create Razorpay payment. Check backend Razorpay credentials.');
+      }
+    });
+  }
+
+  createRazorpayQr(): void {
+    if (!this.bookingId) {
       return;
     }
 
     this.isCreatingQr = true;
-    this.bookingService.createPaymentQr(bookingId).subscribe({
+    this.errorMessage = '';
+    this.successMessage = '';
+    this.bookingService.createPaymentQr(this.bookingId).subscribe({
       next: (payment) => {
         this.isCreatingQr = false;
         this.paymentQrImageUrl = payment.imageUrl;
@@ -53,6 +111,129 @@ export class PaymentComponent implements OnInit {
         this.paymentMessage = 'Unable to create Razorpay QR';
         this.errorMessage = this.readErrorMessage(error, 'Razorpay QR Codes API could not create a fixed-amount QR for this account.');
       }
+    });
+  }
+
+  checkPaymentStatus(): void {
+    if (!this.bookingId || this.isCheckingStatus) {
+      return;
+    }
+
+    this.isCheckingStatus = true;
+    this.errorMessage = '';
+    this.bookingService.getPaymentStatus(this.bookingId).subscribe({
+      next: (payment) => {
+        this.isCheckingStatus = false;
+        this.paymentMessage = payment.message;
+        this.successMessage = payment.status === 'SUCCESS' ? payment.message : '';
+        if (this.booking) {
+          this.booking = {
+            ...this.booking,
+            paymentStatus: payment.status,
+            paymentId: payment.paymentId,
+            status: payment.status === 'SUCCESS' ? 'CONFIRMED' : payment.status === 'FAILED' ? 'CANCELLED' : 'PENDING'
+          };
+        }
+      },
+      error: (error) => {
+        this.isCheckingStatus = false;
+        this.errorMessage = this.readErrorMessage(error, 'Unable to check payment status.');
+      }
+    });
+  }
+
+  private openCheckout(order: {
+    keyId: string;
+    amountInPaise: number;
+    currency: string;
+    name: string;
+    description: string;
+    orderId: string;
+    prefillName: string;
+    prefillEmail: string;
+  }): void {
+    this.loadRazorpayCheckout().then(() => {
+      if (!window.Razorpay) {
+        this.errorMessage = 'Razorpay Checkout could not be loaded.';
+        return;
+      }
+
+      const checkout = new window.Razorpay({
+        key: order.keyId,
+        amount: order.amountInPaise,
+        currency: order.currency,
+        name: order.name,
+        description: order.description,
+        order_id: order.orderId,
+        prefill: {
+          name: order.prefillName,
+          email: order.prefillEmail
+        },
+        theme: {
+          color: '#006ce4'
+        },
+        handler: (response) => this.verifyRazorpayPayment(response),
+        modal: {
+          ondismiss: () => {
+            this.paymentMessage = 'Payment was closed before completion.';
+          }
+        }
+      });
+      checkout.open();
+    }).catch(() => {
+      this.errorMessage = 'Razorpay Checkout could not be loaded.';
+    });
+  }
+
+  private verifyRazorpayPayment(response: RazorpaySuccessResponse): void {
+    this.isVerifyingPayment = true;
+    this.errorMessage = '';
+    this.successMessage = '';
+
+    this.bookingService.verifyPayment(this.bookingId, {
+      razorpayOrderId: response.razorpay_order_id,
+      razorpayPaymentId: response.razorpay_payment_id,
+      razorpaySignature: response.razorpay_signature
+    }).subscribe({
+      next: (payment) => {
+        this.isVerifyingPayment = false;
+        this.successMessage = payment.message;
+        this.paymentMessage = payment.message;
+        if (this.booking) {
+          this.booking = {
+            ...this.booking,
+            status: 'CONFIRMED',
+            paymentStatus: 'SUCCESS',
+            paymentId: payment.paymentId
+          };
+        }
+      },
+      error: (error) => {
+        this.isVerifyingPayment = false;
+        this.errorMessage = this.readErrorMessage(error, 'Payment verification failed.');
+      }
+    });
+  }
+
+  private loadRazorpayCheckout(): Promise<void> {
+    if (window.Razorpay) {
+      return Promise.resolve();
+    }
+
+    return new Promise((resolve, reject) => {
+      const existingScript = document.querySelector<HTMLScriptElement>('script[src="https://checkout.razorpay.com/v1/checkout.js"]');
+      if (existingScript) {
+        existingScript.addEventListener('load', () => resolve(), { once: true });
+        existingScript.addEventListener('error', () => reject(), { once: true });
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+      script.async = true;
+      script.onload = () => resolve();
+      script.onerror = () => reject();
+      document.body.appendChild(script);
     });
   }
 

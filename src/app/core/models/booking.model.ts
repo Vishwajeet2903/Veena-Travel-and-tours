@@ -30,9 +30,31 @@ export interface Booking extends BookingPayload {
   totalAmount?: number;
   paymentStatus?: 'PENDING' | 'SUCCESS' | 'FAILED';
   paymentGateway?: string;
+  paymentOrderId?: string;
   paymentQrId?: string;
   paymentQrImageUrl?: string;
   paymentId?: string;
+}
+
+export interface PaymentOrderResponse {
+  bookingId: number;
+  gateway: string;
+  keyId: string;
+  orderId: string;
+  amount: number;
+  amountInPaise: number;
+  currency: string;
+  status: 'PENDING' | 'SUCCESS' | 'FAILED';
+  name: string;
+  description: string;
+  prefillName: string;
+  prefillEmail: string;
+}
+
+export interface VerifyPaymentPayload {
+  razorpayOrderId: string;
+  razorpayPaymentId: string;
+  razorpaySignature: string;
 }
 
 export interface PaymentQrResponse {
