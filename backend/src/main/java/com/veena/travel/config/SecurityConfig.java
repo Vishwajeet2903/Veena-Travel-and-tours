@@ -1,6 +1,7 @@
 package com.veena.travel.config;
 
 import com.veena.travel.security.JwtAuthenticationFilter;
+import java.util.Arrays;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -43,6 +44,7 @@ public class SecurityConfig {
         .cors(cors -> {})
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(auth -> auth
+            .requestMatchers("/", "/health", "/api/health").permitAll()
             .requestMatchers("/api/auth/**").permitAll()
             .requestMatchers(HttpMethod.GET, "/api/hotels/**", "/api/flights/**", "/api/buses/**").permitAll()
             .requestMatchers(HttpMethod.POST, "/api/bookings").authenticated()
@@ -80,10 +82,12 @@ public class SecurityConfig {
 
   @Bean
   public CorsConfigurationSource corsConfigurationSource(
-      @Value("${app.cors.allowed-origin}") String allowedOrigin
+      @Value("${app.cors.allowed-origins}") String allowedOrigins,
+      @Value("${app.cors.allowed-origin-patterns:}") String allowedOriginPatterns
   ) {
     var configuration = new CorsConfiguration();
-    configuration.setAllowedOrigins(List.of(allowedOrigin, "http://127.0.0.1:4200"));
+    configuration.setAllowedOrigins(splitCsv(allowedOrigins));
+    configuration.setAllowedOriginPatterns(splitCsv(allowedOriginPatterns));
     configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
     configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
     configuration.setAllowCredentials(true);
@@ -91,5 +95,16 @@ public class SecurityConfig {
     var source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", configuration);
     return source;
+  }
+
+  private List<String> splitCsv(String value) {
+    if (value == null || value.isBlank()) {
+      return List.of();
+    }
+
+    return Arrays.stream(value.split(","))
+        .map(String::trim)
+        .filter(origin -> !origin.isBlank())
+        .toList();
   }
 }
