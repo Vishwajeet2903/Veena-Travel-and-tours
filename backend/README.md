@@ -32,19 +32,18 @@ app.mail.from=your-email@gmail.com
 
 For Gmail, use an app password instead of your normal account password.
 
-## QR Payments
+## Cashfree Payments
 
-The payment page shows a UPI QR code for booking payment.
-
-If you use Razorpay QR APIs, set your Razorpay account keys before starting the backend:
+Set your Cashfree PG credentials before starting the backend:
 
 ```powershell
-$env:RAZORPAY_KEY_ID = 'rzp_live_xxxxxxxxxxxxxx'
-$env:RAZORPAY_KEY_SECRET = 'your_live_key_secret'
+$env:CASHFREE_CLIENT_ID = 'your_client_id'
+$env:CASHFREE_CLIENT_SECRET = 'your_client_secret'
+$env:CASHFREE_MODE = 'sandbox'
 mvn spring-boot:run
 ```
 
-Do not commit real Razorpay secrets to `application.properties` or git.
+Use `production` for `CASHFREE_MODE` only after switching to live Cashfree credentials. Do not commit real payment gateway secrets to `application.properties` or git.
 
 ## Run
 

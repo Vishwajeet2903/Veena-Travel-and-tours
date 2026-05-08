@@ -7,10 +7,7 @@ import {
   Booking,
   BookingPayload,
   PaymentOrderResponse,
-  PaymentPageResponse,
-  PaymentQrResponse,
   PaymentStatusResponse,
-  VerifyPaymentLinkPayload,
   VerifyPaymentPayload
 } from '../models/booking.model';
 
@@ -50,44 +47,12 @@ export class BookingService {
     );
   }
 
-  createPaymentPage(bookingId: number): Observable<PaymentPageResponse> {
-    return this.http.post<PaymentPageResponse>(`${environment.apiUrl}/payments/bookings/${bookingId}/page`, {}).pipe(
-      tap((payment) => this.patchLocalBooking(bookingId, {
-        paymentGateway: payment.gateway,
-        paymentLinkId: payment.paymentLinkId,
-        paymentLinkUrl: payment.paymentUrl,
-        paymentStatus: payment.status
-      }))
-    );
-  }
-
-  verifyPaymentPage(bookingId: number, payload: VerifyPaymentLinkPayload): Observable<PaymentStatusResponse> {
-    return this.http.post<PaymentStatusResponse>(`${environment.apiUrl}/payments/bookings/${bookingId}/page/verify`, payload).pipe(
-      tap((payment) => this.patchLocalBooking(bookingId, {
-        status: payment.status === 'SUCCESS' ? 'CONFIRMED' : payment.status === 'FAILED' ? 'CANCELLED' : 'PENDING',
-        paymentStatus: payment.status,
-        paymentId: payment.paymentId
-      }))
-    );
-  }
-
   verifyPayment(bookingId: number, payload: VerifyPaymentPayload): Observable<PaymentStatusResponse> {
     return this.http.post<PaymentStatusResponse>(`${environment.apiUrl}/payments/bookings/${bookingId}/verify`, payload).pipe(
       tap((payment) => this.patchLocalBooking(bookingId, {
         status: payment.status === 'SUCCESS' ? 'CONFIRMED' : payment.status === 'FAILED' ? 'CANCELLED' : 'PENDING',
         paymentStatus: payment.status,
         paymentId: payment.paymentId
-      }))
-    );
-  }
-
-  createPaymentQr(bookingId: number): Observable<PaymentQrResponse> {
-    return this.http.post<PaymentQrResponse>(`${environment.apiUrl}/payments/bookings/${bookingId}/qr`, {}).pipe(
-      tap((payment) => this.patchLocalBooking(bookingId, {
-        paymentGateway: payment.gateway,
-        paymentQrId: payment.qrId,
-        paymentQrImageUrl: payment.imageUrl,
-        paymentStatus: payment.status
       }))
     );
   }

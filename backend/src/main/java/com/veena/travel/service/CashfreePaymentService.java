@@ -1,0 +1,253 @@
+package com.veena.travel.service;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.veena.travel.dto.PaymentOrderResponse;
+import com.veena.travel.dto.PaymentStatusResponse;
+import com.veena.travel.dto.VerifyPaymentRequest;
+import com.veena.travel.model.Booking;
+import com.veena.travel.model.BookingStatus;
+import com.veena.travel.repository.BookingRepository;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.security.Principal;
+import java.time.Instant;
+import java.util.Map;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClient;
+import org.springframework.web.client.RestClientResponseException;
+import org.springframework.web.server.ResponseStatusException;
+
+@Service
+public class CashfreePaymentService {
+  private static final String PAYMENT_PENDING = "PENDING";
+  private static final String PAYMENT_SUCCESS = "SUCCESS";
+  private static final String PAYMENT_FAILED = "FAILED";
+  private static final String GATEWAY_CASHFREE_CHECKOUT = "CASHFREE_CHECKOUT";
+
+  private final BookingRepository bookingRepository;
+  private final EmailService emailService;
+  private final RestClient restClient;
+  private final ObjectMapper objectMapper;
+  private final String clientId;
+  private final String clientSecret;
+  private final String apiVersion;
+  private final String mode;
+  private final String frontendBaseUrl;
+
+  public CashfreePaymentService(
+      BookingRepository bookingRepository,
+      EmailService emailService,
+      RestClient.Builder restClientBuilder,
+      ObjectMapper objectMapper,
+      @Value("${app.cashfree.client-id:}") String clientId,
+      @Value("${app.cashfree.client-secret:}") String clientSecret,
+      @Value("${app.cashfree.api-version:2023-08-01}") String apiVersion,
+      @Value("${app.cashfree.mode:sandbox}") String mode,
+      @Value("${app.frontend.base-url:https://romify-travel-and-tours.vercel.app}") String frontendBaseUrl
+  ) {
+    this.bookingRepository = bookingRepository;
+    this.emailService = emailService;
+    this.objectMapper = objectMapper;
+    this.clientId = clientId;
+    this.clientSecret = clientSecret;
+    this.apiVersion = apiVersion;
+    this.mode = "production".equalsIgnoreCase(mode) ? "production" : "sandbox";
+    this.frontendBaseUrl = frontendBaseUrl.replaceAll("/+$", "");
+    this.restClient = restClientBuilder.baseUrl(cashfreeBaseUrl(this.mode)).build();
+  }
+
+  public PaymentOrderResponse createOrder(Long bookingId, Principal principal) {
+    var booking = findUserBooking(bookingId, principal);
+    var amount = payableAmount(booking).setScale(2, RoundingMode.HALF_UP);
+    requireGatewayConfig();
+
+    var orderId = createCashfreeOrderId(booking.getId());
+    var body = Map.ofEntries(
+        Map.entry("order_id", orderId),
+        Map.entry("order_amount", amount),
+        Map.entry("order_currency", "INR"),
+        Map.entry("customer_details", Map.of(
+            "customer_id", "customer_" + booking.getUser().getId(),
+            "customer_name", defaultString(booking.getGuestName(), booking.getUser().getName()),
+            "customer_email", defaultString(booking.getEmail(), booking.getUser().getEmail()),
+            "customer_phone", "9999999999"
+        )),
+        Map.entry("order_meta", Map.of(
+            "return_url", frontendBaseUrl + "/booking/payment/" + booking.getId() + "?cashfree_order_id={order_id}"
+        )),
+        Map.entry("order_note", "Romify booking #" + booking.getId()),
+        Map.entry("order_tags", Map.of("booking_id", booking.getId().toString()))
+    );
+
+    JsonNode response;
+    try {
+      response = restClient.post()
+          .uri("/orders")
+          .headers(this::addCashfreeHeaders)
+          .body(body)
+          .retrieve()
+          .body(JsonNode.class);
+    } catch (RestClientResponseException exception) {
+      throw gatewayException(exception);
+    }
+
+    var paymentSessionId = response == null ? "" : response.path("payment_session_id").asText();
+    if (paymentSessionId.isBlank()) {
+      throw new ResponseStatusException(HttpStatus.BAD_GATEWAY, "Cashfree did not return a payment session id.");
+    }
+
+    booking.setPaymentGateway(GATEWAY_CASHFREE_CHECKOUT);
+    booking.setPaymentOrderId(orderId);
+    booking.setPaymentStatus(PAYMENT_PENDING);
+    booking.setStatus(BookingStatus.PENDING);
+    bookingRepository.save(booking);
+
+    return new PaymentOrderResponse(
+        booking.getId(),
+        GATEWAY_CASHFREE_CHECKOUT,
+        orderId,
+        paymentSessionId,
+        mode,
+        amount,
+        amount.multiply(BigDecimal.valueOf(100)).setScale(0, RoundingMode.HALF_UP).intValueExact(),
+        "INR",
+        PAYMENT_PENDING,
+        "Romify",
+        "Booking #" + booking.getId(),
+        booking.getGuestName(),
+        booking.getEmail()
+    );
+  }
+
+  public PaymentStatusResponse verifyCheckoutPayment(Long bookingId, VerifyPaymentRequest request, Principal principal) {
+    var booking = findUserBooking(bookingId, principal);
+
+    if (booking.getPaymentOrderId() == null || booking.getPaymentOrderId().isBlank()) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Create a Cashfree order before verifying payment.");
+    }
+
+    if (!booking.getPaymentOrderId().equals(request.cashfreeOrderId())) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Payment order does not match this booking.");
+    }
+
+    return resolveOrderStatus(booking);
+  }
+
+  public PaymentStatusResponse checkStatus(Long bookingId, Principal principal) {
+    var booking = findUserBooking(bookingId, principal);
+
+    if (PAYMENT_SUCCESS.equals(booking.getPaymentStatus())) {
+      return new PaymentStatusResponse(booking.getId(), PAYMENT_SUCCESS, booking.getPaymentId(), "Payment successful. Ticket email already sent.");
+    }
+
+    if (booking.getPaymentOrderId() == null || booking.getPaymentOrderId().isBlank()) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Create a Cashfree payment order before checking payment status.");
+    }
+
+    return resolveOrderStatus(booking);
+  }
+
+  private PaymentStatusResponse resolveOrderStatus(Booking booking) {
+    requireGatewayConfig();
+
+    JsonNode response;
+    try {
+      response = restClient.get()
+          .uri("/orders/{orderId}", booking.getPaymentOrderId())
+          .headers(this::addCashfreeHeaders)
+          .retrieve()
+          .body(JsonNode.class);
+    } catch (RestClientResponseException exception) {
+      throw gatewayException(exception);
+    }
+
+    var cashfreeStatus = response == null ? "" : response.path("order_status").asText();
+    var cfOrderId = response == null ? "" : response.path("cf_order_id").asText();
+    var paymentId = cfOrderId.isBlank() ? booking.getPaymentOrderId() : cfOrderId;
+
+    if ("PAID".equalsIgnoreCase(cashfreeStatus)) {
+      booking.setPaymentGateway(GATEWAY_CASHFREE_CHECKOUT);
+      booking.setPaymentStatus(PAYMENT_SUCCESS);
+      booking.setStatus(BookingStatus.CONFIRMED);
+      booking.setPaymentId(paymentId);
+      var savedBooking = bookingRepository.save(booking);
+      emailService.sendTicketEmail(savedBooking);
+      return new PaymentStatusResponse(savedBooking.getId(), PAYMENT_SUCCESS, savedBooking.getPaymentId(), "Payment successful. Booking ticket has been emailed.");
+    }
+
+    if ("EXPIRED".equalsIgnoreCase(cashfreeStatus) || "TERMINATED".equalsIgnoreCase(cashfreeStatus)) {
+      booking.setPaymentStatus(PAYMENT_FAILED);
+      booking.setStatus(BookingStatus.CANCELLED);
+      booking.setPaymentId(paymentId);
+      bookingRepository.save(booking);
+      return new PaymentStatusResponse(booking.getId(), PAYMENT_FAILED, booking.getPaymentId(), "Payment was not completed. Please create a new payment and try again.");
+    }
+
+    return new PaymentStatusResponse(booking.getId(), PAYMENT_PENDING, null, "Payment is still pending. Complete the Cashfree checkout and check again.");
+  }
+
+  private Booking findUserBooking(Long bookingId, Principal principal) {
+    var booking = bookingRepository.findByIdWithUser(bookingId)
+        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Booking not found."));
+
+    if (!booking.getUser().getEmail().equals(principal.getName())) {
+      throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You cannot access this booking payment.");
+    }
+
+    return booking;
+  }
+
+  private BigDecimal payableAmount(Booking booking) {
+    var unitPrice = booking.getPrice() == null ? BigDecimal.ZERO : booking.getPrice();
+    var count = booking.getPassengers() != null ? booking.getPassengers() : booking.getGuests();
+    return unitPrice.multiply(BigDecimal.valueOf(Math.max(1, count == null ? 1 : count)));
+  }
+
+  private void requireGatewayConfig() {
+    if (clientId.isBlank() || clientSecret.isBlank()) {
+      throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Cashfree credentials are not configured.");
+    }
+  }
+
+  private void addCashfreeHeaders(org.springframework.http.HttpHeaders headers) {
+    headers.set("x-client-id", clientId);
+    headers.set("x-client-secret", clientSecret);
+    headers.set("x-api-version", apiVersion);
+  }
+
+  private String createCashfreeOrderId(Long bookingId) {
+    return "booking_" + bookingId + "_" + Instant.now().toEpochMilli();
+  }
+
+  private String defaultString(String value, String fallback) {
+    if (value == null || value.isBlank()) {
+      return fallback == null ? "" : fallback;
+    }
+    return value;
+  }
+
+  private String cashfreeBaseUrl(String mode) {
+    return "production".equalsIgnoreCase(mode) ? "https://api.cashfree.com/pg" : "https://sandbox.cashfree.com/pg";
+  }
+
+  private ResponseStatusException gatewayException(RestClientResponseException exception) {
+    var message = "Cashfree payment gateway request failed.";
+
+    try {
+      var body = objectMapper.readTree(exception.getResponseBodyAsString());
+      var cashfreeMessage = body.path("message").asText();
+      if (!cashfreeMessage.isBlank()) {
+        message = cashfreeMessage;
+      }
+    } catch (Exception ignored) {
+      if (!exception.getResponseBodyAsString().isBlank()) {
+        message = exception.getResponseBodyAsString();
+      }
+    }
+
+    return new ResponseStatusException(HttpStatus.BAD_GATEWAY, message);
+  }
+}

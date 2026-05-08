@@ -41,8 +41,9 @@ export interface Booking extends BookingPayload {
 export interface PaymentOrderResponse {
   bookingId: number;
   gateway: string;
-  keyId: string;
   orderId: string;
+  paymentSessionId: string;
+  cashfreeMode: 'sandbox' | 'production';
   amount: number;
   amountInPaise: number;
   currency: string;
@@ -53,39 +54,8 @@ export interface PaymentOrderResponse {
   prefillEmail: string;
 }
 
-export interface PaymentPageResponse {
-  bookingId: number;
-  gateway: string;
-  paymentLinkId: string;
-  paymentUrl: string;
-  amount: number;
-  amountInPaise: number;
-  currency: string;
-  status: 'PENDING' | 'SUCCESS' | 'FAILED';
-}
-
-export interface VerifyPaymentLinkPayload {
-  razorpayPaymentId: string;
-  razorpayPaymentLinkId: string;
-  razorpayPaymentLinkReferenceId: string;
-  razorpayPaymentLinkStatus: string;
-  razorpaySignature: string;
-}
-
 export interface VerifyPaymentPayload {
-  razorpayOrderId: string;
-  razorpayPaymentId: string;
-  razorpaySignature: string;
-}
-
-export interface PaymentQrResponse {
-  bookingId: number;
-  gateway: string;
-  qrId: string;
-  imageUrl: string;
-  amount: number;
-  status: 'PENDING' | 'SUCCESS' | 'FAILED';
-  message: string;
+  cashfreeOrderId: string;
 }
 
 export interface PaymentStatusResponse {

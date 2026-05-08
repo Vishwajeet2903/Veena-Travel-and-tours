@@ -28,8 +28,10 @@ DB_USERNAME=your_database_user
 DB_PASSWORD=your_database_password
 CORS_ALLOWED_ORIGINS=https://romify-travel-and-tours.vercel.app
 FRONTEND_BASE_URL=https://romify-travel-and-tours.vercel.app
-RAZORPAY_KEY_ID=rzp_test_or_live_key_id
-RAZORPAY_KEY_SECRET=your_razorpay_key_secret
+CASHFREE_CLIENT_ID=your_cashfree_client_id
+CASHFREE_CLIENT_SECRET=your_cashfree_client_secret
+CASHFREE_MODE=sandbox
+CASHFREE_API_VERSION=2023-08-01
 ```
 
 For Vercel preview URLs, the backend also allows this pattern by default:

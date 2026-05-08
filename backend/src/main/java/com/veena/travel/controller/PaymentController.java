@@ -1,12 +1,9 @@
 package com.veena.travel.controller;
 
 import com.veena.travel.dto.PaymentOrderResponse;
-import com.veena.travel.dto.PaymentPageResponse;
-import com.veena.travel.dto.PaymentQrResponse;
 import com.veena.travel.dto.PaymentStatusResponse;
-import com.veena.travel.dto.VerifyPaymentLinkRequest;
 import com.veena.travel.dto.VerifyPaymentRequest;
-import com.veena.travel.service.RazorpayQrPaymentService;
+import com.veena.travel.service.CashfreePaymentService;
 import jakarta.validation.Valid;
 import java.security.Principal;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,24 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/payments")
 public class PaymentController {
-  private final RazorpayQrPaymentService paymentService;
+  private final CashfreePaymentService paymentService;
 
-  public PaymentController(RazorpayQrPaymentService paymentService) {
+  public PaymentController(CashfreePaymentService paymentService) {
     this.paymentService = paymentService;
-  }
-
-  @PostMapping("/bookings/{bookingId}/page")
-  public PaymentPageResponse createPaymentPage(@PathVariable Long bookingId, Principal principal) {
-    return paymentService.createPaymentPage(bookingId, principal);
-  }
-
-  @PostMapping("/bookings/{bookingId}/page/verify")
-  public PaymentStatusResponse verifyPaymentPage(
-      @PathVariable Long bookingId,
-      @Valid @RequestBody VerifyPaymentLinkRequest request,
-      Principal principal
-  ) {
-    return paymentService.verifyPaymentPage(bookingId, request, principal);
   }
 
   @PostMapping("/bookings/{bookingId}/order")
@@ -51,11 +34,6 @@ public class PaymentController {
       Principal principal
   ) {
     return paymentService.verifyCheckoutPayment(bookingId, request, principal);
-  }
-
-  @PostMapping("/bookings/{bookingId}/qr")
-  public PaymentQrResponse createPaymentQr(@PathVariable Long bookingId, Principal principal) {
-    return paymentService.createQr(bookingId, principal);
   }
 
   @GetMapping("/bookings/{bookingId}/status")
