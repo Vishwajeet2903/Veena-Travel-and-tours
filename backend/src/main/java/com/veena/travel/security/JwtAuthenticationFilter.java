@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import io.jsonwebtoken.JwtException;
 import java.io.IOException;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -20,6 +21,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
   public JwtAuthenticationFilter(JwtService jwtService, CustomUserDetailsService userDetailsService) {
     this.jwtService = jwtService;
     this.userDetailsService = userDetailsService;
+  }
+
+  @Override
+  protected boolean shouldNotFilter(HttpServletRequest request) {
+    var path = request.getServletPath();
+    return HttpMethod.OPTIONS.matches(request.getMethod()) || path.startsWith("/api/auth/");
   }
 
   @Override
